@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" role="img" aria-label="Jane Sun">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#3e6c9e"/>
+      <stop offset="100%" stop-color="#16202e"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" rx="100" fill="url(#bg)"/>
+  <text x="50%" y="53%" text-anchor="middle" dominant-baseline="middle"
+        font-family="Space Grotesk, Inter, -apple-system, sans-serif"
+        font-size="76" font-weight="600" fill="#f2f5f8">JS</text>
+</svg>

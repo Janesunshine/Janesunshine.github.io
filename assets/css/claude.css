@@ -1,40 +1,39 @@
 /* ==========================================================================
-   Editorial — warm cream + coral, Claude.com-style
-   Implemented from DESIGN-claude.md. Cream canvas, warm-ink text, slab-serif
-   display (Cormorant Garamond ≈ Copernicus) + humanist sans body (Inter),
-   coral CTAs used scarcely, dark-navy product surfaces for rhythm.
-   Loaded after main.css; replaces questui.css. No parallax.
+   Editorial — cool, minimalist, Jane Sun's portfolio
+   Slate-blue canvas, cool ink text, geometric-sans display (Space Grotesk)
+   + humanist sans body (Inter), steel-blue CTAs used scarcely, deep-navy
+   product surfaces for rhythm. Loaded after main.css. No parallax.
    ========================================================================== */
 
 :root {
-  --c-canvas:        #faf9f5;
-  --c-surface-soft:  #f5f0e8;
-  --c-surface-card:  #efe9de;
-  --c-cream-strong:  #e8e0d2;
-  --c-dark:          #181715;
-  --c-dark-elev:     #252320;
-  --c-dark-soft:     #1f1e1b;
+  --c-canvas:        #f7f9fb;
+  --c-surface-soft:  #eef1f5;
+  --c-surface-card:  #e3e8ee;
+  --c-cream-strong:  #d5dce4;
+  --c-dark:          #0d1420;
+  --c-dark-elev:     #16202e;
+  --c-dark-soft:     #111a26;
 
-  --c-ink:           #141413;
-  --c-body-strong:   #252523;
-  --c-body:          #3d3d3a;
-  --c-muted:         #6c6a64;
-  --c-muted-soft:    #8e8b82;
+  --c-ink:           #0b1320;
+  --c-body-strong:   #1c2733;
+  --c-body:          #3c4753;
+  --c-muted:         #64707c;
+  --c-muted-soft:    #8992a0;
 
-  --c-primary:       #cc785c;
-  --c-primary-active:#a9583e;
-  --c-hairline:      #e6dfd8;
-  --c-hairline-soft: #ebe6df;
-  --c-on-dark:       #faf9f5;
-  --c-on-dark-soft:  #a09d96;
-  --c-teal:          #5db8a6;
-  --c-amber:         #e8a55a;
+  --c-primary:       #3e6c9e;
+  --c-primary-active:#2c4f76;
+  --c-hairline:      #dde3ea;
+  --c-hairline-soft: #e7ebf1;
+  --c-on-dark:       #f2f5f8;
+  --c-on-dark-soft:  #9aa5b3;
+  --c-teal:          #4fa8a6;
+  --c-amber:         #7b87a6;
 
-  --c-font-display: "Cormorant Garamond", "Tiempos Headline", Garamond, "Times New Roman", serif;
+  --c-font-display: "Space Grotesk", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --c-font-body:    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --c-font-mono:    "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
 
-  /* Re-point academicpages base variables to the cream palette */
+  /* Re-point academicpages base variables to the cool palette */
   --global-bg-color:                  var(--c-canvas);
   --global-base-color:                var(--c-canvas);
   --global-text-color:                var(--c-body);
@@ -220,7 +219,7 @@ a.masthead-cta:hover { background: var(--c-primary-active); }
 .code-window__bar {
   display: flex; align-items: center; gap: 10px;
   padding: 12px 16px; background: var(--c-dark-elev);
-  border-bottom: 1px solid #0f0e0c;
+  border-bottom: 1px solid #10151d;
 }
 .code-window__dots { display: inline-flex; gap: 7px; }
 .code-window__dots i { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }

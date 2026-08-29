@@ -1,85 +1,73 @@
 ---
 layout: home
 permalink: /
-title: "Tim Phan"
-role: "Machine Learning · AI · Quantitative Finance"
-tagline: "Graduate student at Georgia Tech working at the intersection of machine learning and finance."
-avatar: "headshot.png"
+title: "Jane Sun"
+role: "Quantitative Finance · Machine Learning · Risk Management"
+tagline: "Master's student at Georgia Tech building at the intersection of quantitative finance and machine learning."
+avatar: "avatar-placeholder.svg"
 author_profile: false
 redirect_from:
   - /about/
   - /about.html
 intro: >-
-  I'm pursuing a Master's in Quantitative & Computational Finance and a Master's in
-  Computational Science & Engineering at Georgia Tech, with a strong interest in machine
-  learning and AI. I previously earned a B.S. in Information Systems (Dec 2024), also at
-  Georgia Tech, with coursework spanning financial mathematics, machine learning, and deep
-  learning. I love turning ideas into working models — and shipping fun personal projects
-  outside of class.
+  I'm pursuing dual Master's degrees in Quantitative & Computational Finance and Computational
+  Science & Engineering at Georgia Tech, graduating December 2026. I previously earned a B.S. in
+  Business Administration (Information Technology Management) at Georgia Tech with highest honors.
+  My work spans data engineering, quantitative risk analytics, and machine learning — I'm currently
+  looking for 2027 new-grad roles in quant finance, machine learning, and risk management, and I
+  enjoy turning messy data into models and decisions that hold up under pressure.
 highlights:
-  - title: "IMC Prosperity 3"
-    detail: "Top 16% worldwide in the global algorithmic trading competition — competing solo."
-    tag: "Trading · Solo"
-  - title: "ByteFight 2025"
-    detail: "8th place in Georgia Tech's AI bot development competition."
-    tag: "AI Agents"
-  - title: "Hacklytics 2025"
-    detail: "2nd place in the Assurant Challenge — multimodal, agentic AI for predictive insights at scale."
-    tag: "Hackathon"
+  - title: "Published Research"
+    detail: "Co-authored \"The Impact of Blockchain-Enabled Smart Contracts on Firms' Operational Efficiency,\" published in the Journal of Operations Management (2025)."
+    tag: "Research · Publication"
+  - title: "Data Engineer @ Hallmark Cards"
+    detail: "Built automated ETL pipelines processing 10M+ monthly CRM records, cutting report processing time by 30%."
+    tag: "Data Engineering"
+  - title: "Quant Risk Analyst @ Credit One Bank"
+    detail: "Analyzed 6M+ credit card accounts to identify delinquency trends and quantify risk factors, improving collections efficiency by 12%."
+    tag: "Quant Risk"
 education:
-  - date: "Jan 2025 – Dec 2026"
+  - date: "Aug 2025 – Dec 2026"
     degree: "M.S. in Quantitative & Computational Finance"
     school: "Georgia Institute of Technology"
-  - date: "Aug 2025 – May 2026"
+  - date: "Aug 2025 – Dec 2026"
     degree: "M.S. in Computational Science & Engineering"
     school: "Georgia Institute of Technology"
-  - date: "May 2023 – Dec 2024"
-    degree: "B.S. in Information Systems"
+  - date: "Aug 2020 – Dec 2024"
+    degree: "B.S. in Business Administration, Information Technology Management"
     school: "Georgia Institute of Technology"
+    note: "GPA 3.9/4.0, Highest Honor"
 experience:
-  - date: "Jun 2026 – Present"
-    role: "Data & AI Engineering Intern (DESP 2026)"
-    org: "AT&T Inc."
-  - date: "Apr 2025 – May 2025"
-    role: "Algorithm Developer"
-    org: "AI @ Georgia Tech ByteFight"
-  - date: "May 2024 – Aug 2024"
-    role: "IT&D Intern"
-    org: "Smurfit Westrock"
+  - date: "Feb 2025 – Jul 2025"
+    role: "Data Engineer"
+    org: "Hallmark Cards"
+  - date: "May 2024 – Dec 2024"
+    role: "Data Scientist Intern"
+    org: "Hallmark Cards"
+  - date: "Aug 2023 – Dec 2023"
+    role: "Healthcare Consulting Analyst Intern"
+    org: "Health Care Program Advisors (HCPA)"
+  - date: "Jun 2023 – Aug 2023"
+    role: "Quantitative Risk Management Analyst Intern"
+    org: "Credit One Bank"
 skills:
   - category: "Languages"
-    items: [Python, R, SQL]
-  - category: "Machine Learning"
-    items: [scikit-learn, TensorFlow, PyTorch, Hugging Face, Classical ML, Deep Learning, NLP, Agentic AI, RAG]
-  - category: "Data Science"
-    items: [NumPy, Pandas, Matplotlib, Seaborn, Tableau, Excel]
-  - category: "MLOps & Tools"
-    items: [Git, VS Code, Jupyter, MongoDB, Snowflake, Azure, Kubernetes, Databricks, MLflow, FastAPI, Docker]
+    items: [Python, R, SQL, C/C++, MATLAB]
+  - category: "Data & ML"
+    items: [Pandas, NumPy, SAS, Machine Learning, Statistical Modeling]
+  - category: "BI & Analytics Tools"
+    items: [Tableau, Power BI, Alteryx, Mainframe/JCL]
+  - category: "Platforms"
+    items: [Snowflake, MySQL]
 coursework:
   graduate:
-    - Deep Learning
-    - Natural Language Processing
-    - Computational Data Analysis
-    - Algorithms
+    - Large Language Models
+    - Machine Learning
+    - Data Mining & Statistical Learning
     - Modeling & Simulation
-    - High Performance Computing
-    - Data Vis Principles
-    - Data & Visual Analytics
-    - Financial Optimization
-    - Investments
-    - AI for Finance
-    - Numerical Methods in Finance
-    - Fixed Income Securities
+    - Algorithms
+    - Data Analysis & Visualization
     - Derivative Securities
-  undergraduate:
-    - Object-Oriented Programming
-    - Databases
-    - Analytics
-    - Python for Data Science
-    - Data Prep & Visualization
-clubs:
-  - Data Science @ GT
-  - Trading Club
-  - GT Barbell Club
-  - Vietnamese Student Association
+    - Stochastic Processes
+    - Computational Data Analysis
 ---

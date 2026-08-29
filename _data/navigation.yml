@@ -3,17 +3,10 @@
 # Changing the order here will adjust the order and you can also add additional
 # links. Removing a link prevents it from showing in the header, but does not
 # prevent it from being included in the site.
-#
-# NOTE that only one of the CV options should be selected, the first is for the
-#      Markdown formatted page while the second is generated using JSON.
 
-main:   
+main:
   - title: "Portfolio"
     url: /portfolio/
-        
+
   - title: "Resume"
-    url: /Phan, Tim_Resume.pdf
-    
-  # - title: "CV"
-  #   url: /cv-json/
-    
+    url: "/Jane_Sun_Resume.pdf"
