@@ -4,7 +4,7 @@ permalink: /
 title: "Jane Sun"
 role: "Quantitative Finance · Machine Learning · Risk Management"
 tagline: "Master's student at Georgia Tech building at the intersection of quantitative finance and machine learning."
-avatar: "avatar-placeholder.svg"
+avatar: "jane-headshot.jpg"
 author_profile: false
 redirect_from:
   - /about/
