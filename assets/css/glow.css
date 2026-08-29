@@ -1,0 +1,1198 @@
+/* ==========================================================================
+   GLOW — Apple-style dark theme with glowing accents
+   --------------------------------------------------------------------------
+   Loaded after main.css. Scoped to html[data-theme="dark"] so the light
+   toggle still shows the original theme. Tweak the variables below to
+   re-tune the whole look.
+   ========================================================================== */
+
+html[data-theme="dark"] {
+  /* --- Surfaces --- */
+  --glow-bg:          #07070b;   /* page background (near-black) */
+  --glow-bg-2:        #0c0c12;   /* slightly lifted panels */
+  --glow-surface:     rgba(255, 255, 255, 0.045);  /* glass fill */
+  --glow-surface-2:   rgba(255, 255, 255, 0.075);  /* glass fill, hover */
+  --glow-border:      rgba(255, 255, 255, 0.10);
+  --glow-border-2:    rgba(255, 255, 255, 0.18);
+
+  /* --- Text --- */
+  --glow-text:        #f5f5f7;   /* Apple off-white */
+  --glow-text-dim:    #a1a1ad;
+  --glow-text-dimmer: #6e6e78;
+
+  /* --- Accents (the glow) --- */
+  --glow-1:           #7c5cff;   /* violet  */
+  --glow-2:           #2dd4ff;   /* cyan    */
+  --glow-3:           #ff5ca8;   /* pink    */
+  --glow-grad:        linear-gradient(120deg, var(--glow-2), var(--glow-1) 55%, var(--glow-3));
+
+  /* Override the theme's own variables so base components inherit the palette */
+  --global-bg-color:                  var(--glow-bg);
+  --global-base-color:                var(--glow-bg);
+  --global-footer-bg-color:           transparent;
+  --global-text-color:                var(--glow-text);
+  --global-text-color-light:          var(--glow-text-dim);
+  --global-link-color:                var(--glow-2);
+  --global-link-color-hover:          #ffffff;
+  --global-link-color-visited:        var(--glow-2);
+  --global-masthead-link-color:       var(--glow-text-dim);
+  --global-masthead-link-color-hover: var(--glow-text);
+  --global-border-color:              var(--glow-border);
+  --global-dark-border-color:         var(--glow-border);
+}
+
+/* ==========================================================================
+   Base & background aurora
+   ========================================================================== */
+
+html[data-theme="dark"] body {
+  background-color: var(--glow-bg);
+  color: var(--glow-text);
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Display",
+    "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Fixed, full-viewport glow field that sits behind everything.
+   A soft top-center glow keeps the top from reading as a flat black bar, and a
+   vertical gradient lets the colors fade smoothly up & down (no sharp lines). */
+html[data-theme="dark"] body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(78rem 42rem at 50% -10%, rgba(124, 92, 255, 0.30), transparent 72%),
+    radial-gradient(52rem 52rem at 0% 8%,    rgba(124, 92, 255, 0.22), transparent 60%),
+    radial-gradient(50rem 50rem at 100% 14%, rgba(45, 212, 255, 0.20), transparent 60%),
+    radial-gradient(62rem 62rem at 80% 116%, rgba(255, 92, 168, 0.16), transparent 60%),
+    linear-gradient(180deg, #0c0c17 0%, #09090f 50%, #07070b 100%);
+  pointer-events: none;
+}
+
+/* Subtle dotted grid texture over the glow */
+html[data-theme="dark"] body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 26px 26px;
+  pointer-events: none;
+}
+
+html[data-theme="dark"] h1,
+html[data-theme="dark"] h2,
+html[data-theme="dark"] h3,
+html[data-theme="dark"] h4 {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+  color: var(--glow-text);
+  letter-spacing: -0.02em;
+}
+
+/* Fancy scrollbar */
+html[data-theme="dark"] ::-webkit-scrollbar { width: 11px; height: 11px; }
+html[data-theme="dark"] ::-webkit-scrollbar-track { background: transparent; }
+html[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 99px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+html[data-theme="dark"] ::-webkit-scrollbar-thumb:hover { background: rgba(124, 92, 255, 0.5); background-clip: content-box; }
+html[data-theme="dark"] ::selection { background: rgba(124, 92, 255, 0.35); color: #fff; }
+
+/* ==========================================================================
+   Masthead — frosted, sticky, Apple-style nav
+   ========================================================================== */
+
+html[data-theme="dark"] .masthead {
+  background: rgba(10, 10, 16, 0.6);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid var(--glow-border);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+html[data-theme="dark"] .greedy-nav { background: transparent; }
+html[data-theme="dark"] .greedy-nav a { color: var(--glow-text-dim); font-weight: 500; transition: color 0.2s ease; }
+html[data-theme="dark"] .greedy-nav a:hover { color: var(--glow-text); }
+
+/* Site title -> gradient wordmark */
+html[data-theme="dark"] .masthead__menu-item--lg a {
+  font-weight: 700;
+  font-size: 1.15em;
+  letter-spacing: -0.02em;
+  background: var(--glow-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* Animated underline on nav links */
+html[data-theme="dark"] .greedy-nav .visible-links a::before { background: var(--glow-grad); height: 2px; }
+
+/* Theme-toggle icon glow */
+html[data-theme="dark"] #theme-toggle a { cursor: pointer; }
+html[data-theme="dark"] #theme-icon { color: var(--glow-text-dim); transition: color 0.2s ease, text-shadow 0.2s ease; }
+html[data-theme="dark"] #theme-toggle:hover #theme-icon { color: var(--glow-2); text-shadow: 0 0 12px rgba(45, 212, 255, 0.7); }
+
+html[data-theme="dark"] .greedy-nav .hidden-links { background: rgba(12, 12, 18, 0.95); border: 1px solid var(--glow-border); border-radius: 14px; backdrop-filter: blur(20px); }
+html[data-theme="dark"] .greedy-nav .hidden-links a { color: var(--glow-text-dim); }
+html[data-theme="dark"] .greedy-nav .hidden-links a:hover { color: var(--glow-text); }
+html[data-theme="dark"] .greedy-nav button { background: transparent; }
+html[data-theme="dark"] .navicon,
+html[data-theme="dark"] .navicon::before,
+html[data-theme="dark"] .navicon::after { background: var(--glow-text); }
+
+/* ==========================================================================
+   Sidebar / author profile -> glass card with glowing avatar
+   ========================================================================== */
+
+html[data-theme="dark"] .sidebar .author__avatar { position: relative; display: inline-block; }
+
+/* Rotating gradient halo behind the avatar */
+html[data-theme="dark"] .sidebar .author__avatar::before {
+  content: "";
+  position: absolute;
+  inset: -7px;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, var(--glow-2), var(--glow-1), var(--glow-3), var(--glow-2));
+  filter: blur(11px);
+  opacity: 0.75;
+  z-index: 0;
+  animation: glow-spin 9s linear infinite;
+}
+html[data-theme="dark"] .sidebar .author__avatar img {
+  position: relative;
+  z-index: 1;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+}
+
+@keyframes glow-spin { to { transform: rotate(360deg); } }
+
+html[data-theme="dark"] .author__name {
+  font-weight: 700;
+  font-size: 1.5em;
+  letter-spacing: -0.02em;
+  background: linear-gradient(120deg, #ffffff, #c7c7d1);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+html[data-theme="dark"] .author__pronouns,
+html[data-theme="dark"] .author__bio { color: var(--glow-text-dim); }
+
+/* Social links list -> glass rows that light up on hover */
+html[data-theme="dark"] .author__urls.social-icons li { color: var(--glow-text-dim); }
+html[data-theme="dark"] .author__urls.social-icons li a {
+  display: inline-flex;
+  align-items: center;
+  color: var(--glow-text-dim);
+  border-radius: 8px;
+  padding: 2px 6px;
+  margin-left: -6px;
+  transition: color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+}
+html[data-theme="dark"] .author__urls.social-icons li a:hover {
+  color: var(--glow-text);
+  background: var(--glow-surface);
+  transform: translateX(2px);
+}
+html[data-theme="dark"] .author__urls.social-icons li a:hover i { color: var(--glow-2); text-shadow: 0 0 10px rgba(45, 212, 255, 0.6); }
+html[data-theme="dark"] .author__urls .icon-pad-right { transition: color 0.2s ease, text-shadow 0.2s ease; }
+
+/* Follow button */
+html[data-theme="dark"] .author__urls-wrapper button.btn--inverse {
+  background: var(--glow-surface);
+  border: 1px solid var(--glow-border);
+  color: var(--glow-text);
+  border-radius: 10px;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  transition: all 0.2s ease;
+}
+html[data-theme="dark"] .author__urls-wrapper button.btn--inverse:hover {
+  border-color: var(--glow-border-2);
+  box-shadow: 0 0 22px rgba(124, 92, 255, 0.35);
+}
+
+/* ==========================================================================
+   Page content
+   ========================================================================== */
+
+html[data-theme="dark"] .page__content { color: #d6d6de; }
+html[data-theme="dark"] .page__content p { color: #c4c4cf; line-height: 1.75; }
+
+/* Hero title (e.g. "About Me") -> big gradient headline */
+html[data-theme="dark"] .page__title {
+  font-weight: 800;
+  font-size: clamp(2.4rem, 6vw, 3.6rem);
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  background: linear-gradient(115deg, #ffffff 30%, #b9a8ff 65%, #74e6ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+html[data-theme="dark"] .page__title a { color: inherit; -webkit-text-fill-color: inherit; }
+
+/* Section headers in content get a glowing accent bar */
+html[data-theme="dark"] .page__content h1,
+html[data-theme="dark"] .page__content h2,
+html[data-theme="dark"] .page__content h3 {
+  position: relative;
+  padding-left: 0.85rem;
+  margin-top: 2.2rem;
+  border-bottom: none;
+  color: var(--glow-text);
+}
+html[data-theme="dark"] .page__content h1::before,
+html[data-theme="dark"] .page__content h2::before,
+html[data-theme="dark"] .page__content h3::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.12em;
+  bottom: 0.12em;
+  width: 4px;
+  border-radius: 99px;
+  background: var(--glow-grad);
+  box-shadow: 0 0 14px rgba(124, 92, 255, 0.7);
+}
+
+/* Links */
+html[data-theme="dark"] .page__content a {
+  color: var(--glow-2);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(45, 212, 255, 0.28);
+  transition: color 0.2s ease, border-color 0.2s ease, text-shadow 0.2s ease;
+}
+html[data-theme="dark"] .page__content a:hover {
+  color: #9beaff;
+  border-bottom-color: rgba(45, 212, 255, 0.9);
+  text-shadow: 0 0 14px rgba(45, 212, 255, 0.45);
+}
+
+/* Lists -> glassy glowing chips (the achievements / coursework / clubs) */
+html[data-theme="dark"] .page__content ul {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+  display: grid;
+  gap: 0.55rem;
+}
+html[data-theme="dark"] .page__content ul li {
+  position: relative;
+  background: var(--glow-surface);
+  border: 1px solid var(--glow-border);
+  border-radius: 14px;
+  padding: 0.8rem 1rem 0.8rem 2.35rem;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  color: #d6d6de;
+  transition: transform 0.18s ease, border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+html[data-theme="dark"] .page__content ul li::before {
+  content: "";
+  position: absolute;
+  left: 1rem;
+  top: 1.15rem;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--glow-grad);
+  box-shadow: 0 0 11px rgba(124, 92, 255, 0.9);
+}
+html[data-theme="dark"] .page__content ul li:hover {
+  transform: translateY(-2px);
+  background: var(--glow-surface-2);
+  border-color: var(--glow-border-2);
+  box-shadow: 0 10px 34px rgba(0, 0, 0, 0.45), 0 0 26px rgba(124, 92, 255, 0.18);
+}
+/* Keep nested lists from inheriting the card treatment */
+html[data-theme="dark"] .page__content li ul { margin-top: 0.55rem; }
+
+/* Ordered lists stay readable */
+html[data-theme="dark"] .page__content ol { color: #c4c4cf; }
+
+/* Blockquotes & code */
+html[data-theme="dark"] .page__content blockquote {
+  border-left: 3px solid transparent;
+  border-image: var(--glow-grad) 1;
+  background: var(--glow-surface);
+  border-radius: 0 12px 12px 0;
+  color: var(--glow-text-dim);
+}
+html[data-theme="dark"] .page__content code {
+  background: rgba(255, 255, 255, 0.08);
+  color: #e6e6ee;
+  border-radius: 6px;
+  padding: 0.1em 0.4em;
+}
+html[data-theme="dark"] .page__content pre,
+html[data-theme="dark"] .page__content figure.highlight,
+html[data-theme="dark"] div.highlighter-rouge {
+  background: rgba(12, 12, 18, 0.85);
+  border: 1px solid var(--glow-border);
+  border-radius: 14px;
+}
+
+/* Images in content get a soft frame + glow */
+html[data-theme="dark"] .page__content p > img,
+html[data-theme="dark"] .page__content img.align-center,
+html[data-theme="dark"] .page__content figure img {
+  border-radius: 14px;
+  border: 1px solid var(--glow-border);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55);
+}
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+
+html[data-theme="dark"] .btn {
+  border-radius: 11px;
+  border: 1px solid var(--glow-border-2);
+  background: var(--glow-surface);
+  color: var(--glow-text);
+  font-weight: 600;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  transition: transform 0.18s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+html[data-theme="dark"] .btn:hover {
+  transform: translateY(-2px);
+  border-color: transparent;
+  box-shadow: 0 8px 30px rgba(124, 92, 255, 0.45);
+}
+/* Primary-ish buttons get the gradient fill */
+html[data-theme="dark"] .btn--primary,
+html[data-theme="dark"] .btn--info,
+html[data-theme="dark"] .btn--success {
+  background: var(--glow-grad);
+  border-color: transparent;
+  color: #0a0a0f;
+}
+
+/* ==========================================================================
+   Archive / cards (portfolio, talks, publications listings)
+   ========================================================================== */
+
+html[data-theme="dark"] .archive__item-title { color: var(--glow-text); }
+html[data-theme="dark"] .archive__item-title a { color: var(--glow-text); border-bottom: none; }
+html[data-theme="dark"] .archive__item-title a:hover { color: var(--glow-2); }
+html[data-theme="dark"] .archive__item-excerpt { color: var(--glow-text-dim); }
+html[data-theme="dark"] .archive__subtitle { color: var(--glow-text); border-bottom: 1px solid var(--glow-border); }
+
+html[data-theme="dark"] .archive__item-teaser {
+  border-radius: 14px;
+  border: 1px solid var(--glow-border);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5);
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+
+html[data-theme="dark"] .page__footer {
+  background: transparent;
+  border-top: 1px solid var(--glow-border);
+  color: var(--glow-text-dimmer);
+}
+html[data-theme="dark"] .page__footer a { color: var(--glow-text-dim); }
+html[data-theme="dark"] .page__footer a:hover { color: var(--glow-2); }
+html[data-theme="dark"] .page__footer-follow .social-icons .fab,
+html[data-theme="dark"] .page__footer-follow a { color: var(--glow-text-dim); }
+
+/* ==========================================================================
+   Misc polish
+   ========================================================================== */
+
+html[data-theme="dark"] hr { border: 0; height: 1px; background: var(--glow-border); }
+html[data-theme="dark"] .breadcrumbs a { color: var(--glow-text-dim); }
+html[data-theme="dark"] table { color: var(--glow-text); }
+html[data-theme="dark"] table td,
+html[data-theme="dark"] table th { border-color: var(--glow-border); }
+html[data-theme="dark"] thead { background: var(--glow-surface); }
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  html[data-theme="dark"] .sidebar .author__avatar::before { animation: none; }
+  html[data-theme="dark"] .page__content ul li,
+  html[data-theme="dark"] .btn { transition: none; }
+}
+
+
+/* ==========================================================================
+   ==========================================================================
+   LANDING PAGE — hero, sections, cards, parallax, scroll reveal
+   Self-contained palette so it renders correctly regardless of theme toggle.
+   ==========================================================================
+   ========================================================================== */
+
+.glow-home {
+  --glow-bg:        #07070b;
+  --glow-surface:   rgba(255, 255, 255, 0.045);
+  --glow-surface-2: rgba(255, 255, 255, 0.08);
+  --glow-border:    rgba(255, 255, 255, 0.10);
+  --glow-border-2:  rgba(255, 255, 255, 0.20);
+  --glow-text:      #f5f5f7;
+  --glow-dim:       #a1a1ad;
+  --glow-dimmer:    #6e6e78;
+  --glow-1:         #7c5cff;
+  --glow-2:         #2dd4ff;
+  --glow-3:         #ff5ca8;
+  --glow-grad:      linear-gradient(120deg, var(--glow-2), var(--glow-1) 55%, var(--glow-3));
+
+  position: relative;
+  z-index: 1;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+  color: var(--glow-text);
+}
+
+/* The default layout constrains #main; the landing wants full bleed */
+.glow-home { width: 100%; max-width: none; }
+
+/* ---- Scroll progress bar ---- */
+.glow-progress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  background: linear-gradient(90deg, var(--glow-2, #2dd4ff), var(--glow-1, #7c5cff), var(--glow-3, #ff5ca8));
+  box-shadow: 0 0 14px rgba(124, 92, 255, 0.7);
+  z-index: 1000;
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* ==========================================================================
+   Reveal-on-scroll
+   ========================================================================== */
+.reveal {
+  opacity: 0;
+  transform: translate3d(0, 30px, 0);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal.in { opacity: 1; transform: translate3d(0, 0, 0); }
+.glow-card.reveal  { transition-delay: calc(var(--i, 0) * 90ms); }
+.glow-badge.reveal { transition-delay: calc(var(--i, 0) * 70ms); }
+
+/* ==========================================================================
+   HERO
+   ========================================================================== */
+.glow-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 7rem 1.25rem 5rem;
+  overflow: hidden;
+}
+
+.glow-hero__orbs { position: absolute; inset: 0; pointer-events: none; }
+.glow-hero__orbs .orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.4;
+  will-change: transform;
+}
+.orb--1 { width: 42vw; height: 42vw; top: -8vw;  left: -6vw;  background: radial-gradient(circle, #7c5cff, transparent 72%); }
+.orb--2 { width: 36vw; height: 36vw; top: 2vw;   right: -8vw; background: radial-gradient(circle, #2dd4ff, transparent 72%); }
+.orb--3 { width: 40vw; height: 40vw; bottom: -10vw; left: 28vw; background: radial-gradient(circle, #ff5ca8, transparent 72%); opacity: 0.28; }
+
+.glow-hero__inner { position: relative; z-index: 2; max-width: 860px; will-change: opacity, transform; }
+
+.glow-hero__avatar { position: relative; display: inline-block; margin-bottom: 1.8rem; will-change: transform; }
+.glow-hero__avatar::before {
+  content: "";
+  position: absolute;
+  inset: -10px;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, var(--glow-2), var(--glow-1), var(--glow-3), var(--glow-2));
+  filter: blur(16px);
+  opacity: 0.85;
+  z-index: 0;
+  animation: glow-spin 10s linear infinite;
+}
+.glow-hero__avatar img {
+  position: relative;
+  z-index: 1;
+  width: 132px;
+  height: 132px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 14px 50px rgba(0, 0, 0, 0.6);
+}
+
+.glow-hero__eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--glow-2);
+  margin: 0 0 0.9rem;
+}
+.glow-hero__name {
+  font-size: clamp(3rem, 11vw, 7rem);
+  line-height: 0.98;
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  margin: 0;
+  background: linear-gradient(115deg, #ffffff 25%, #c9b8ff 60%, #74e6ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  filter: drop-shadow(0 6px 40px rgba(124, 92, 255, 0.35));
+}
+.glow-hero__tagline {
+  margin: 1.4rem auto 0;
+  max-width: 620px;
+  font-size: clamp(1.05rem, 2.4vw, 1.4rem);
+  line-height: 1.55;
+  color: var(--glow-dim);
+}
+
+.glow-hero__cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  justify-content: center;
+  margin-top: 2.2rem;
+}
+.glow-hero__socials { margin-top: 1.8rem; display: flex; gap: 1.4rem; justify-content: center; }
+.glow-hero__socials a {
+  color: var(--glow-dim);
+  font-size: 1.4rem;
+  transition: color 0.2s ease, transform 0.2s ease, text-shadow 0.2s ease;
+}
+.glow-hero__socials a:hover {
+  color: #fff;
+  transform: translateY(-3px);
+  text-shadow: 0 0 18px rgba(45, 212, 255, 0.8);
+}
+
+/* ---- Buttons ---- */
+.glow-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.78rem 1.5rem;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.98rem;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  border: 1px solid var(--glow-border-2);
+  color: var(--glow-text);
+  background: var(--glow-surface);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  transition: transform 0.2s ease, box-shadow 0.25s ease, border-color 0.2s ease, background 0.2s ease;
+}
+.glow-btn:hover { transform: translateY(-2px); border-color: var(--glow-border-2); box-shadow: 0 10px 34px rgba(0,0,0,0.4), 0 0 26px rgba(124,92,255,0.25); color: #fff; text-decoration: none; }
+.glow-btn--primary {
+  background: var(--glow-grad);
+  border-color: transparent;
+  color: #08080d;
+  font-weight: 700;
+}
+.glow-btn--primary:hover { box-shadow: 0 12px 40px rgba(124, 92, 255, 0.55); color: #08080d; }
+.glow-btn--ghost { background: transparent; }
+
+/* ---- Scroll cue ---- */
+.glow-scrollcue {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  animation: glow-bob 2.4s ease-in-out infinite;
+}
+.glow-scrollcue__mouse {
+  display: block;
+  width: 26px;
+  height: 42px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-radius: 14px;
+  position: relative;
+}
+.glow-scrollcue__mouse span {
+  position: absolute;
+  top: 8px; left: 50%;
+  width: 4px; height: 8px;
+  margin-left: -2px;
+  border-radius: 2px;
+  background: var(--glow-2);
+  box-shadow: 0 0 8px rgba(45, 212, 255, 0.9);
+  animation: glow-scrolldot 2s ease-in-out infinite;
+}
+@keyframes glow-bob { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(7px); } }
+@keyframes glow-scrolldot { 0% { opacity: 0; transform: translateY(0); } 40% { opacity: 1; } 80%,100% { opacity: 0; transform: translateY(12px); } }
+
+/* ==========================================================================
+   SECTIONS
+   ========================================================================== */
+.glow-section { padding: clamp(4rem, 11vh, 9rem) 1.5rem; position: relative; }
+.glow-section__wrap { max-width: 1040px; margin: 0 auto; }
+
+.glow-kicker {
+  text-transform: uppercase;
+  letter-spacing: 0.26em;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--glow-2);
+  margin: 0 0 1rem;
+}
+.glow-h2 {
+  font-size: clamp(1.9rem, 4.6vw, 3.1rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.06;
+  margin: 0 0 2.4rem;
+  background: linear-gradient(115deg, #ffffff, #cfcfe6 80%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+.glow-lead {
+  font-size: clamp(1.3rem, 3vw, 2rem);
+  line-height: 1.5;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  color: #e7e7ef;
+  max-width: 900px;
+}
+.glow-prose { margin-top: 1.4rem; color: var(--glow-dim); line-height: 1.75; }
+.glow-prose a { color: var(--glow-2); text-decoration: none; border-bottom: 1px solid rgba(45,212,255,0.3); }
+.glow-prose a:hover { color: #9beaff; }
+
+/* ---- Highlight cards ---- */
+.glow-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.1rem;
+}
+.glow-card {
+  position: relative;
+  padding: 1.6rem 1.5rem;
+  border-radius: 20px;
+  background: var(--glow-surface);
+  border: 1px solid var(--glow-border);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  overflow: hidden;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.3s ease, background 0.25s ease;
+}
+.glow-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: var(--glow-grad);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+.glow-card:hover {
+  transform: translateY(-5px);
+  background: var(--glow-surface-2);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 40px rgba(124,92,255,0.2);
+}
+.glow-card:hover::after { opacity: 0.9; }
+.glow-card__tag {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--glow-2);
+  background: rgba(45, 212, 255, 0.1);
+  border: 1px solid rgba(45, 212, 255, 0.25);
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  margin-bottom: 1rem;
+}
+.glow-card__title { font-size: 1.35rem; font-weight: 700; letter-spacing: -0.02em; margin: 0 0 0.5rem; color: #fff; }
+.glow-card__detail { margin: 0; color: var(--glow-dim); line-height: 1.6; font-size: 0.98rem; }
+
+/* ---- Coursework columns ---- */
+.glow-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+.glow-col {
+  padding: 1.6rem;
+  border-radius: 20px;
+  background: var(--glow-surface);
+  border: 1px solid var(--glow-border);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+}
+.glow-col__title { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.18em; color: var(--glow-dim); margin: 0 0 1.1rem; }
+.glow-chiplist { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.55rem; }
+.glow-chip {
+  font-size: 0.9rem;
+  padding: 0.5rem 0.9rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glow-border);
+  color: #d8d8e2;
+  transition: transform 0.18s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+.glow-chip:hover { transform: translateY(-2px); color: #fff; border-color: rgba(124,92,255,0.6); box-shadow: 0 0 18px rgba(124,92,255,0.3); }
+
+/* ---- Clubs badges ---- */
+.glow-badges { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.8rem; }
+.glow-badge {
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.7rem 1.3rem;
+  border-radius: 999px;
+  background: var(--glow-surface);
+  border: 1px solid var(--glow-border);
+  color: #e2e2ec;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.25s ease;
+}
+.glow-badge:hover { transform: translateY(-3px); border-color: var(--glow-border-2); box-shadow: 0 0 26px rgba(45, 212, 255, 0.28); }
+
+/* ---- Connect ---- */
+.glow-connect { text-align: center; }
+.glow-connect__wrap {
+  max-width: 720px;
+  padding: clamp(2.5rem, 6vw, 4.5rem) 2rem;
+  border-radius: 28px;
+  background: radial-gradient(120% 140% at 50% 0%, rgba(124, 92, 255, 0.18), transparent 60%), var(--glow-surface);
+  border: 1px solid var(--glow-border);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+}
+.glow-connect__title {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  margin: 0 0 0.8rem;
+  background: linear-gradient(115deg, #fff, #c9b8ff 70%, #74e6ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+.glow-connect__sub { color: var(--glow-dim); font-size: 1.1rem; margin: 0 0 2rem; }
+.glow-connect .glow-hero__cta { margin-top: 0; }
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+@media (max-width: 600px) {
+  .glow-hero { padding-top: 6rem; }
+  .glow-hero__avatar img { width: 108px; height: 108px; }
+  .glow-section { padding-left: 1.25rem; padding-right: 1.25rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glow-hero__avatar::before { animation: none; }
+  .glow-scrollcue, .glow-scrollcue__mouse span { animation: none; }
+  .reveal { transition: none; }
+  .orb { display: none; }
+}
+
+
+/* ==========================================================================
+   ==========================================================================
+   HEADER v2 — floating frosted pill nav (replaces the boxy bar)
+   ==========================================================================
+   ========================================================================== */
+
+html[data-theme="dark"] .masthead {
+  background: transparent;
+  border-bottom: none;
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+/* kill the full-width hairline under the old bar */
+html[data-theme="dark"] .masthead::after { display: none; }
+
+/* the inner wrap becomes a centered, rounded, glassy capsule */
+html[data-theme="dark"] .masthead__inner-wrap {
+  max-width: 940px;
+  margin: 0.8rem auto 0;
+  padding: 0.45em 0.6em 0.45em 1.4em;
+  background: rgba(16, 16, 24, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 999px;
+  -webkit-backdrop-filter: saturate(180%) blur(22px);
+  backdrop-filter: saturate(180%) blur(22px);
+  box-shadow: 0 10px 36px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* remove the opaque per-item rectangles that caused the "box" look */
+html[data-theme="dark"] .masthead__menu-item,
+html[data-theme="dark"] .masthead__menu-item--lg { background-color: transparent; }
+
+/* nav links: pill-shaped hover */
+html[data-theme="dark"] .greedy-nav .visible-links a {
+  border-radius: 999px;
+  padding: 0.4em 0.9em;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+html[data-theme="dark"] .greedy-nav .visible-links a:hover { background: rgba(255, 255, 255, 0.06); }
+/* drop the theme's sliding underline (clashes with pill hover) */
+html[data-theme="dark"] .greedy-nav .visible-links a::before { display: none; }
+
+/* keep the gradient wordmark, no hover pill on it */
+html[data-theme="dark"] .masthead__menu-item--lg a:hover { background: transparent; }
+
+/* theme toggle sits neatly in the capsule */
+html[data-theme="dark"] #theme-toggle a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.1em;
+  height: 2.1em;
+  border-radius: 50%;
+  transition: background 0.2s ease;
+}
+html[data-theme="dark"] #theme-toggle:hover a { background: rgba(255, 255, 255, 0.06); }
+
+/* hamburger (small screens) stays inside the capsule */
+html[data-theme="dark"] .greedy-nav button { border-radius: 50%; }
+
+
+/* ==========================================================================
+   ==========================================================================
+   PORTFOLIO — glowing project cards
+   ==========================================================================
+   ========================================================================== */
+
+.glow-portfolio { padding-top: 4rem; }
+
+.glow-phead { text-align: center; padding: 4.5rem 1.5rem 1.5rem; }
+.glow-phead__title {
+  font-size: clamp(2.6rem, 8vw, 5rem);
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  line-height: 1;
+  margin: 0;
+  background: linear-gradient(115deg, #ffffff 25%, #c9b8ff 60%, #74e6ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  filter: drop-shadow(0 6px 36px rgba(124, 92, 255, 0.3));
+}
+.glow-phead__sub {
+  margin: 1.1rem auto 0;
+  max-width: 600px;
+  color: var(--glow-dim, #a1a1ad);
+  font-size: 1.15rem;
+  line-height: 1.55;
+}
+
+.glow-pgrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: 1.5rem;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.glow-pcard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: 22px;
+  overflow: hidden;
+  background: var(--glow-surface, rgba(255,255,255,0.045));
+  border: 1px solid var(--glow-border, rgba(255,255,255,0.10));
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.32s ease;
+}
+.glow-pcard::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: var(--glow-grad, linear-gradient(120deg, #2dd4ff, #7c5cff 55%, #ff5ca8));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+.glow-pcard:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 26px 60px rgba(0, 0, 0, 0.55), 0 0 46px rgba(124, 92, 255, 0.2);
+}
+.glow-pcard:hover::after { opacity: 0.9; }
+
+.glow-pcard__media { display: block; position: relative; overflow: hidden; background: #0c0c12; }
+.glow-pcard__media img {
+  width: 100%;
+  height: 210px;
+  object-fit: cover;
+  display: block;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.glow-pcard:hover .glow-pcard__media img { transform: scale(1.05); }
+/* subtle fade from the image into the card body */
+.glow-pcard__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 55%, rgba(7, 7, 11, 0.65));
+  pointer-events: none;
+}
+
+.glow-pcard__body { padding: 1.5rem 1.5rem 1.6rem; display: flex; flex-direction: column; flex: 1; }
+.glow-pcard__title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  margin: 0 0 0.7rem;
+  color: #fff;
+}
+.glow-pcard__desc {
+  color: var(--glow-dim, #a1a1ad);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 1.2rem;
+}
+/* clamp long descriptions so cards stay even; hide any trailing image markdown left in excerpt */
+.glow-pcard__desc { display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden; }
+.glow-pcard__desc p { margin: 0; display: inline; }
+.glow-pcard__desc img { display: none; }
+
+.glow-pcard__link {
+  margin-top: auto;
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--glow-2, #2dd4ff);
+  text-decoration: none;
+  border-bottom: none;
+  transition: gap 0.2s ease, color 0.2s ease, text-shadow 0.2s ease;
+}
+.glow-pcard__link span { transition: transform 0.2s ease; }
+.glow-pcard__link:hover { color: #9beaff; text-shadow: 0 0 14px rgba(45, 212, 255, 0.5); }
+.glow-pcard__link:hover span { transform: translateX(4px); }
+
+@media (max-width: 600px) {
+  .glow-pgrid { grid-template-columns: 1fr; }
+}
+
+
+/* ==========================================================================
+   ==========================================================================
+   v3 — centered header, read-more, richer motion
+   ==========================================================================
+   ========================================================================== */
+
+/* ---- (2) Center the nav items inside the capsule ----
+   Keep the greedy-nav's native table layout (flexbox breaks its width
+   measurement and collapses everything into the hamburger). We just give the
+   capsule a comfortable width and center the table cluster with margin:auto. */
+html[data-theme="dark"] .masthead__inner-wrap {
+  width: 100%;
+  max-width: 720px;
+}
+html[data-theme="dark"] .greedy-nav { min-width: 0; }
+html[data-theme="dark"] .greedy-nav .visible-links { margin-left: auto; margin-right: auto; }
+html[data-theme="dark"] .greedy-nav .visible-links li.masthead__menu-item--lg { padding-right: 1.2em; }
+
+/* ---- (4) Portfolio "Read more" toggle ---- */
+.glow-pcard__more {
+  align-self: flex-start;
+  margin: 0 0 1.1rem;
+  padding: 0;
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--glow-2, #2dd4ff);
+  cursor: pointer;
+  transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+.glow-pcard__more:hover { color: #9beaff; text-shadow: 0 0 12px rgba(45, 212, 255, 0.45); }
+.glow-pcard.is-open .glow-pcard__desc {
+  display: block;
+  -webkit-line-clamp: unset;
+  overflow: visible;
+}
+.glow-pcard.is-open .glow-pcard__desc p { display: block; }
+
+/* ---- (5) Hero entrance cascade on first landing ---- */
+.glow-hero__avatar.reveal  { transition-delay: 0.05s; }
+.glow-hero__eyebrow.reveal { transition-delay: 0.18s; }
+.glow-hero__name.reveal    { transition-delay: 0.30s; }
+.glow-hero__tagline.reveal { transition-delay: 0.44s; }
+.glow-hero__cta.reveal     { transition-delay: 0.58s; }
+.glow-hero__socials.reveal { transition-delay: 0.72s; }
+
+/* Living gradient that slowly sweeps across the name */
+.glow-hero__name {
+  background-size: 220% auto;
+  animation: glow-shimmer 9s ease-in-out infinite;
+}
+@keyframes glow-shimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+
+/* Cards rise AND scale in — a touch more dimensional than a plain fade */
+.glow-card.reveal,
+.glow-pcard.reveal,
+.glow-col.reveal {
+  transform: translate3d(0, 36px, 0) scale(0.97);
+}
+.glow-card.reveal.in,
+.glow-pcard.reveal.in,
+.glow-col.reveal.in {
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+/* Section headings get a slightly longer, springier reveal */
+.glow-kicker.reveal,
+.glow-h2.reveal,
+.glow-lead.reveal,
+.glow-phead__title.reveal {
+  transition-duration: 0.85s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glow-hero__name { animation: none; }
+  .glow-hero__avatar.reveal, .glow-hero__eyebrow.reveal, .glow-hero__name.reveal,
+  .glow-hero__tagline.reveal, .glow-hero__cta.reveal, .glow-hero__socials.reveal { transition-delay: 0s; }
+}
+
+
+/* ==========================================================================
+   ==========================================================================
+   v4 — resume/education timeline, portfolio color
+   ==========================================================================
+   ========================================================================== */
+
+/* ---- (3) Education timeline (resume-style) ---- */
+.glow-timeline {
+  list-style: none;
+  margin: 0 0 3.5rem;
+  padding: 0;
+  position: relative;
+}
+.glow-timeline::before {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 10px;
+  bottom: 10px;
+  width: 2px;
+  border-radius: 2px;
+  background: linear-gradient(180deg, rgba(45, 212, 255, 0.65), rgba(124, 92, 255, 0.55) 55%, rgba(255, 92, 168, 0.45));
+}
+.glow-tl {
+  position: relative;
+  padding: 0 0 2.4rem 2.5rem;
+}
+.glow-tl:last-child { padding-bottom: 0; }
+.glow-tl__dot {
+  position: absolute;
+  left: 0;
+  top: 3px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #07070b;
+  border: 2px solid var(--glow-2, #2dd4ff);
+  box-shadow: 0 0 12px rgba(45, 212, 255, 0.7);
+}
+.glow-tl__date {
+  margin: 0 0 0.3rem;
+  font-size: 0.92rem;
+  color: var(--glow-dim, #a1a1ad);
+}
+.glow-tl__title {
+  margin: 0 0 0.3rem;
+  font-size: clamp(1.15rem, 2.4vw, 1.6rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  color: #fff;
+}
+.glow-tl__school { margin: 0; color: var(--glow-dim, #a1a1ad); }
+.glow-tl__note { margin: 0.35rem 0 0; font-size: 0.92rem; color: var(--glow-dimmer, #6e6e78); }
+
+/* Coursework block under the timeline */
+.glow-cw { margin-top: 0.5rem; }
+.glow-cw__head {
+  margin: 0 0 1.3rem;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--glow-dim, #a1a1ad);
+}
+
+/* ---- (2) Add color to the portfolio page ---- */
+.glow-portfolio { position: relative; }
+.glow-portfolio::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(48rem 48rem at 10% 16%,  rgba(124, 92, 255, 0.22), transparent 60%),
+    radial-gradient(44rem 44rem at 94% 30%,  rgba(45, 212, 255, 0.18), transparent 60%),
+    radial-gradient(54rem 54rem at 55% 112%, rgba(255, 92, 168, 0.16), transparent 60%);
+}
+
+
+/* ---- (1) Rich hero color that fades out before the bottom edge (no seam) ----
+   Static layer (not transformed / not fixed) so it's cheap and never clunky;
+   masked to transparent near the bottom so the hero blends into the next
+   section with no sharp line. */
+.glow-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(40rem 32rem at 26% 30%, rgba(124, 92, 255, 0.30), transparent 62%),
+    radial-gradient(36rem 30rem at 78% 32%, rgba(45, 212, 255, 0.24), transparent 62%),
+    radial-gradient(32rem 26rem at 58% 72%, rgba(255, 92, 168, 0.16), transparent 60%);
+  -webkit-mask: linear-gradient(180deg, #000 50%, transparent 90%);
+          mask: linear-gradient(180deg, #000 50%, transparent 90%);
+}
