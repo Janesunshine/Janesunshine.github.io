@@ -86,22 +86,21 @@
     window.addEventListener("resize", fixSidebarNav);
     if (sidebarQuery.addEventListener) sidebarQuery.addEventListener("change", fixSidebarNav);
 
-    /* ---- Custom cursor: a small ring that trails the pointer and grows
-       over anything clickable — only on devices with a real mouse. Never
-       touches touch/coarse-pointer devices, so mobile taps are untouched. */
+    /* ---- Custom cursor: the native pointer stays visible everywhere by
+       default; a small filled ring only takes over while hovering a link
+       or other clickable element — only on devices with a real mouse.
+       Never touches touch/coarse-pointer devices, so mobile taps are
+       untouched. */
     if (!reduceMotion && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
       var cursor = document.createElement("div");
       cursor.className = "glow-cursor";
       document.body.appendChild(cursor);
-      document.documentElement.classList.add("has-glow-cursor");
 
       var tx = 0, ty = 0, cx = 0, cy = 0, started = false;
       window.addEventListener("mousemove", function (e) {
         tx = e.clientX; ty = e.clientY;
-        if (!started) { cx = tx; cy = ty; cursor.classList.add("is-visible"); started = true; }
+        if (!started) { cx = tx; cy = ty; started = true; }
       });
-      document.addEventListener("mouseleave", function () { cursor.classList.remove("is-visible"); });
-      document.addEventListener("mouseenter", function () { if (started) cursor.classList.add("is-visible"); });
 
       (function trail() {
         cx += (tx - cx) * 0.22;
@@ -112,10 +111,16 @@
 
       var interactive = "a, button, .pf-row, .glow-chip, .glow-tagrow__role, .glow-badge, [role='button']";
       document.addEventListener("mouseover", function (e) {
-        if (e.target.closest && e.target.closest(interactive)) cursor.classList.add("is-active");
+        if (e.target.closest && e.target.closest(interactive)) {
+          document.documentElement.classList.add("has-glow-cursor");
+          cursor.classList.add("is-visible", "is-active");
+        }
       });
       document.addEventListener("mouseout", function (e) {
-        if (e.target.closest && e.target.closest(interactive)) cursor.classList.remove("is-active");
+        if (e.target.closest && e.target.closest(interactive)) {
+          document.documentElement.classList.remove("has-glow-cursor");
+          cursor.classList.remove("is-visible", "is-active");
+        }
       });
     }
   });
