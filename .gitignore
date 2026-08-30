@@ -10,4 +10,13 @@ Gemfile.lock
 
 # Ingore files created by npm
 node_modules
-package-lock.json.DS_Store
+package-lock.json
+.DS_Store
+
+# Local Ruby gem install used for this project only (not committed —
+# GitHub Pages builds server-side with its own pinned gem stack)
+vendor/
+.bundle/
+
+# Stray R history file, not part of the site
+_pages/.Rhistory

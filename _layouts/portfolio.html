@@ -7,91 +7,60 @@ layout: default
 <main class="glow-home glow-portfolio">
 
   <section class="glow-phead">
-    <p class="glow-kicker">Selected Work</p>
     <h1 class="glow-phead__title">Portfolio</h1>
     {% if page.intro %}<p class="glow-phead__sub">{{ page.intro }}</p>{% endif %}
   </section>
 
   <section class="glow-section pf-section">
     <div class="glow-section__wrap">
-
-      {% comment %} ---- Featured project: large dark "product" card ---- {% endcomment %}
-      {% for post in site.portfolio %}{% if post.featured %}
-        {% assign parts = post.excerpt | split: '<img' %}
-        {% assign body = parts[0] | replace: '<br/>', '' | replace: '<br />', '' | replace: '<br>', '' %}
-        {% if parts.size > 1 %}{% assign img = parts[1] | prepend: '<img' %}{% else %}{% assign img = nil %}{% endif %}
-        {% if post.link contains 'http' %}{% assign tgt = 'target="_blank" rel="noopener"' %}{% else %}{% assign tgt = '' %}{% endif %}
-        <article class="pf-featured reveal">
-          {% if img %}<a class="pf-featured__media" href="{{ post.link }}" {{ tgt }} aria-label="{{ post.title | escape }}">{{ img }}</a>{% endif %}
-          <div class="pf-featured__body">
-            <div class="pf-tags">
-              <span class="pf-badge">Featured</span>
-              {% if post.tag %}<span class="pf-tag pf-tag--ondark">{{ post.tag }}</span>{% endif %}
-            </div>
-            <h2 class="pf-featured__title">{{ post.title }}</h2>
-            <div class="pf-featured__desc">{{ body | markdownify }}</div>
-            <button class="pf-featured__more" type="button" hidden>Read more</button>
-            <div class="pf-actions">
-              {% if post.links %}
-                {% for l in post.links %}
-                  {% if l.url contains 'http' %}{% assign ltgt = 'target="_blank" rel="noopener"' %}{% else %}{% assign ltgt = '' %}{% endif %}
-                  <a class="glow-pcard__link glow-pcard__link--ondark" href="{{ l.url }}" {{ ltgt }}>{{ l.label }} <span>&rarr;</span></a>
-                {% endfor %}
-              {% elsif post.link %}
-                <a class="glow-pcard__link glow-pcard__link--ondark" href="{{ post.link }}" {{ tgt }}>View project <span>&rarr;</span></a>
-              {% endif %}
-            </div>
-          </div>
-        </article>
-      {% endif %}{% endfor %}
-
-      {% comment %} ---- The rest: tagged, numbered grid ---- {% endcomment %}
-      <div class="glow-pgrid">
+      <ol class="pf-list">
         {% assign idx = 0 %}
-        {% for post in site.portfolio %}{% unless post.featured %}
+        {% for post in site.portfolio %}
           {% assign idx = idx | plus: 1 %}
           {% assign parts = post.excerpt | split: '<img' %}
           {% assign body = parts[0] | replace: '<br/>', '' | replace: '<br />', '' | replace: '<br>', '' %}
           {% if parts.size > 1 %}{% assign img = parts[1] | prepend: '<img' %}{% else %}{% assign img = nil %}{% endif %}
-          {% if post.link contains 'http' %}{% assign tgt = 'target="_blank" rel="noopener"' %}{% else %}{% assign tgt = '' %}{% endif %}
+          {% comment %} Most items only set `links:` (plural); fall back to
+          its first entry so the thumbnail actually goes somewhere. {% endcomment %}
+          {% if post.link %}{% assign primary_link = post.link %}{% elsif post.links %}{% assign primary_link = post.links[0].url %}{% else %}{% assign primary_link = nil %}{% endif %}
+          {% if primary_link contains 'http' %}{% assign tgt = 'target="_blank" rel="noopener"' %}{% else %}{% assign tgt = '' %}{% endif %}
 
-          <article class="glow-pcard reveal" style="--i: {{ forloop.index0 }}">
+          <li class="pf-row reveal" style="--i: {{ forloop.index0 }}">
+            <div class="pf-row__meta">
+              <span class="pf-row__num">{{ idx | prepend: '0' }}</span>
+              {% if post.tag %}<span class="pf-tag">{{ post.tag }}</span>{% endif %}
+            </div>
             {% if img %}
-              <a class="glow-pcard__media" href="{{ post.link }}" {{ tgt }} aria-label="{{ post.title | escape }}">
-                {{ img }}
-                <span class="glow-pcard__index">{{ idx | prepend: '0' }}</span>
-              </a>
+              <a class="pf-row__media" href="{{ primary_link }}" {{ tgt }} aria-label="{{ post.title | escape }}">{{ img }}</a>
             {% endif %}
-            <div class="glow-pcard__body">
-              <div class="pf-tags">{% if post.tag %}<span class="pf-tag">{{ post.tag }}</span>{% endif %}</div>
-              <h2 class="glow-pcard__title">{{ post.title }}</h2>
-              <div class="glow-pcard__desc">{{ body | markdownify }}</div>
-              <button class="glow-pcard__more" type="button" hidden>Read more</button>
+            <div class="pf-row__body">
+              <h2 class="pf-row__title">{{ post.title }}</h2>
+              <div class="pf-row__desc">{{ body | markdownify }}</div>
               <div class="pf-actions">
                 {% if post.links %}
                   {% for l in post.links %}
                     {% if l.url contains 'http' %}{% assign ltgt = 'target="_blank" rel="noopener"' %}{% else %}{% assign ltgt = '' %}{% endif %}
-                    <a class="glow-pcard__link" href="{{ l.url }}" {{ ltgt }}>{{ l.label }} <span>&rarr;</span></a>
+                    <a class="pf-row__link" href="{{ l.url }}" {{ ltgt }}>{{ l.label }} <span>&rarr;</span></a>
                   {% endfor %}
                 {% elsif post.link %}
-                  <a class="glow-pcard__link" href="{{ post.link }}" {{ tgt }}>View project <span>&rarr;</span></a>
+                  <a class="pf-row__link" href="{{ post.link }}" {{ tgt }}>View project <span>&rarr;</span></a>
                 {% endif %}
               </div>
             </div>
-          </article>
-        {% endunless %}{% endfor %}
-      </div>
+          </li>
+        {% endfor %}
+      </ol>
     </div>
   </section>
 
-  <!-- ===================== CTA (coral callout) ===================== -->
+  <!-- ===================== CTA (editorial closer, no box) ===================== -->
   <section class="glow-section glow-connect" id="connect">
     <div class="glow-section__wrap glow-connect__wrap">
       <h2 class="glow-connect__title">Have a problem worth solving?</h2>
       <p class="glow-connect__sub">I'm always up for interesting work in quant finance, machine learning, and risk management.</p>
       <div class="glow-hero__cta glow-connect__cta">
-        {% if site.author.email %}<a class="glow-btn glow-btn--oncoral" href="mailto:{{ site.author.email }}">Get in touch</a>{% endif %}
-        {% if site.author.github %}<a class="glow-btn glow-btn--coral-ghost" href="https://github.com/{{ site.author.github }}">GitHub</a>{% endif %}
+        {% if site.author.email %}<a class="glow-btn glow-btn--primary" href="mailto:{{ site.author.email }}">Get in touch</a>{% endif %}
+        {% if site.author.github %}<a class="glow-btn glow-btn--secondary" href="https://github.com/{{ site.author.github }}">GitHub</a>{% endif %}
       </div>
     </div>
   </section>

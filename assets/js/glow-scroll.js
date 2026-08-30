@@ -36,25 +36,6 @@
       }
     }
 
-    /* ---- Portfolio "Read more" toggles (grid + featured cards) ---- */
-    function wireMore(card, descSel, btnSel) {
-      var desc = card.querySelector(descSel);
-      var btn = card.querySelector(btnSel);
-      if (!desc || !btn) return;
-      // Only show the toggle if the text is actually clamped/overflowing.
-      if (desc.scrollHeight - desc.clientHeight > 4) {
-        btn.hidden = false;
-        btn.addEventListener("click", function () {
-          var open = card.classList.toggle("is-open");
-          btn.textContent = open ? "Show less" : "Read more";
-        });
-      }
-    }
-    Array.prototype.slice.call(document.querySelectorAll(".glow-pcard"))
-      .forEach(function (card) { wireMore(card, ".glow-pcard__desc", ".glow-pcard__more"); });
-    Array.prototype.slice.call(document.querySelectorAll(".pf-featured"))
-      .forEach(function (card) { wireMore(card, ".pf-featured__desc", ".pf-featured__more"); });
-
     /* ---- Scroll progress bar (cheap, rAF-throttled). No parallax. ---- */
     var scrollTicking = false;
     function onScroll() {
@@ -69,5 +50,73 @@
     window.addEventListener("scroll", requestScroll, { passive: true });
     window.addEventListener("resize", requestScroll);
     onScroll();
+
+    /* ---- Nav sidebar (desktop): the bundled greedy-nav plugin does two
+       things that assume a short horizontal bar, both wrong once the nav
+       is a full-height vertical sidebar:
+       1) it collapses links into a hidden dropdown based on horizontal-
+          overflow math, and
+       2) on every layout pass it sets `body`'s padding-top inline to the
+          masthead's own height, to clear a fixed *bar*. With the
+          masthead now 100vh tall, that inline style pushes the entire
+          page down by a full viewport height.
+       Rather than fight either, just correct both after the plugin runs,
+       whenever the sidebar layout is active. Mobile is untouched — the
+       plugin's own behavior is exactly right there. */
+    var sidebarQuery = window.matchMedia("(min-width: 881px)");
+    function fixSidebarNav() {
+      if (!sidebarQuery.matches) { document.body.style.paddingTop = ""; return; }
+      document.body.style.paddingTop = "0px";
+      var vlinks = document.querySelector("#site-nav .visible-links");
+      var hlinks = document.querySelector("#site-nav .hidden-links");
+      var btn = document.querySelector("#site-nav button");
+      if (hlinks && vlinks) {
+        // Reclaimed links must land back before the CTA, not after it —
+        // the CTA never leaves visible-links (it's "persist"), so a bare
+        // appendChild would stack reclaimed links below it.
+        var ctaEl = vlinks.querySelector(".masthead__menu-item--cta");
+        while (hlinks.firstChild) {
+          if (ctaEl) { vlinks.insertBefore(hlinks.firstChild, ctaEl); }
+          else { vlinks.appendChild(hlinks.firstChild); }
+        }
+      }
+      if (btn) { btn.classList.add("hidden"); btn.classList.remove("close"); }
+    }
+    fixSidebarNav();
+    window.addEventListener("resize", fixSidebarNav);
+    if (sidebarQuery.addEventListener) sidebarQuery.addEventListener("change", fixSidebarNav);
+
+    /* ---- Custom cursor: a small ring that trails the pointer and grows
+       over anything clickable — only on devices with a real mouse. Never
+       touches touch/coarse-pointer devices, so mobile taps are untouched. */
+    if (!reduceMotion && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+      var cursor = document.createElement("div");
+      cursor.className = "glow-cursor";
+      document.body.appendChild(cursor);
+      document.documentElement.classList.add("has-glow-cursor");
+
+      var tx = 0, ty = 0, cx = 0, cy = 0, started = false;
+      window.addEventListener("mousemove", function (e) {
+        tx = e.clientX; ty = e.clientY;
+        if (!started) { cx = tx; cy = ty; cursor.classList.add("is-visible"); started = true; }
+      });
+      document.addEventListener("mouseleave", function () { cursor.classList.remove("is-visible"); });
+      document.addEventListener("mouseenter", function () { if (started) cursor.classList.add("is-visible"); });
+
+      (function trail() {
+        cx += (tx - cx) * 0.22;
+        cy += (ty - cy) * 0.22;
+        cursor.style.transform = "translate(" + cx + "px, " + cy + "px)";
+        window.requestAnimationFrame(trail);
+      })();
+
+      var interactive = "a, button, .pf-row, .glow-chip, .glow-tagrow__role, .glow-badge, [role='button']";
+      document.addEventListener("mouseover", function (e) {
+        if (e.target.closest && e.target.closest(interactive)) cursor.classList.add("is-active");
+      });
+      document.addEventListener("mouseout", function (e) {
+        if (e.target.closest && e.target.closest(interactive)) cursor.classList.remove("is-active");
+      });
+    }
   });
 })();

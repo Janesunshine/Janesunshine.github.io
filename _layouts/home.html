@@ -14,17 +14,39 @@ layout: default
 
 <main class="glow-home" id="glow-home">
 
+  <!-- Hero + Recent-roles share one continuous tinted backdrop (band),
+       painted once on this wrapper, so there's no seam where the hero's
+       gradient would otherwise hand off to a flat section behind it. -->
+  <div class="glow-warm-band">
+
   <!-- ===================== HERO ===================== -->
   <section class="glow-hero" id="hero">
+
+    <!-- Masthead: the name runs the full width, like a letterhead, instead
+         of sharing a column with the portrait — a deliberately different
+         composition from the standard "name beside photo" hero split. -->
+    <div class="glow-hero__masthead">
+      <h1 class="glow-hero__name">{{ page.title | default: site.author.name }}</h1>
+    </div>
+
     <div class="glow-hero__grid">
 
       <div class="glow-hero__lead">
         <div class="glow-hero__id">
-          <img class="glow-hero__avatar" src="{{ avatar_url }}" alt="{{ site.author.name }}" loading="eager" />
-          {% if page.role %}<p class="glow-hero__eyebrow">{{ page.role }}</p>{% endif %}
+          {% if site.author.linkedin %}
+            <a href="https://www.linkedin.com/in/{{ site.author.linkedin }}" class="glow-hero__avatar-link" aria-label="{{ site.author.name }} on LinkedIn" title="Connect on LinkedIn">
+              <img class="glow-hero__avatar" src="{{ avatar_url }}" alt="{{ site.author.name }}" loading="eager" />
+            </a>
+          {% else %}
+            <img class="glow-hero__avatar" src="{{ avatar_url }}" alt="{{ site.author.name }}" loading="eager" />
+          {% endif %}
+          {% if page.role %}
+            {% assign role_tags = page.role | split: ' · ' %}
+            <p class="glow-hero__eyebrow">
+              {% for t in role_tags %}<span class="glow-hero__eyebrow-tag glow-hero__eyebrow-tag--{{ forloop.index }}">{{ t }}</span>{% unless forloop.last %}<span class="glow-hero__eyebrow-dot"> · </span>{% endunless %}{% endfor %}
+            </p>
+          {% endif %}
         </div>
-
-        <h1 class="glow-hero__name">{{ page.title | default: site.author.name }}</h1>
 
         {% if page.tagline %}<p class="glow-hero__tagline">{{ page.tagline }}</p>{% endif %}
 
@@ -41,60 +63,35 @@ layout: default
         </div>
       </div>
 
-      <!-- Signature dark "product chrome": a code window -->
-      <div class="glow-hero__art" aria-hidden="true">
-        <div class="code-window">
-          <div class="code-window__bar">
-            <span class="code-window__dots"><i></i><i></i><i></i></span>
-            <span class="code-window__file">jane.py</span>
-          </div>
-          <pre class="code-window__body"><code><span class="tk-kw">class</span> <span class="tk-cls">JaneSun</span>:
-    school <span class="tk-op">=</span> <span class="tk-str">"Georgia Tech"</span>
-    focus  <span class="tk-op">=</span> [<span class="tk-str">"quant finance"</span>, <span class="tk-str">"machine learning"</span>, <span class="tk-str">"risk management"</span>]
-
-    <span class="tk-kw">def</span> <span class="tk-fn">building</span>(<span class="tk-self">self</span>):
-        <span class="tk-kw">return</span> [
-            <span class="tk-str">"MS Quantitative &amp; Computational Finance"</span>,
-            <span class="tk-str">"MS Computational Science &amp; Engineering"</span>,
-        ]
-
-    <span class="tk-kw">def</span> <span class="tk-fn">ship</span>(<span class="tk-self">self</span>, idea):
-        <span class="tk-kw">return</span> <span class="tk-cls">Model</span>(idea).train().deploy()  <span class="tk-com"># let's talk →</span></code></pre>
-        </div>
+      <!-- About lives here now, opposite the portrait — a printed two-column
+           page (portrait + byline on the left, running text on the right,
+           split by a rule) instead of a product-chrome graphic. -->
+      {% if page.intro or content != "" %}
+      <div class="glow-hero__about" id="about">
+        <p class="glow-kicker">About</p>
+        {% if page.intro %}<p class="glow-lead">{{ page.intro }}</p>{% endif %}
+        {% if content != "" %}<div class="glow-prose">{{ content }}</div>{% endif %}
       </div>
+      {% endif %}
 
     </div>
   </section>
-
-  <!-- ===================== ABOUT ===================== -->
-  {% if page.intro or content != "" %}
-  <section class="glow-section" id="about">
-    <div class="glow-section__wrap glow-about">
-      <p class="glow-kicker">About</p>
-      {% if page.intro %}<p class="glow-lead">{{ page.intro }}</p>{% endif %}
-      {% if content != "" %}<div class="glow-prose">{{ content }}</div>{% endif %}
-    </div>
-  </section>
-  {% endif %}
 
   <!-- ===================== HIGHLIGHTS ===================== -->
   {% if page.highlights %}
   <section class="glow-section" id="highlights">
     <div class="glow-section__wrap">
-      <p class="glow-kicker">Recently</p>
-      <h2 class="glow-h2">A few things I'm proud of.</h2>
-      <div class="glow-cards">
+      <h2 class="glow-h2">Recent roles.</h2>
+      <div class="glow-tagrow">
         {% for h in page.highlights %}
-          <article class="glow-card reveal" style="--i: {{ forloop.index0 }}">
-            {% if h.tag %}<span class="glow-card__tag">{{ h.tag }}</span>{% endif %}
-            <h3 class="glow-card__title">{{ h.title }}</h3>
-            <p class="glow-card__detail">{{ h.detail }}</p>
-          </article>
+          <a class="glow-tagrow__role reveal" href="#experience" style="--i: {{ forloop.index0 }}">{{ h }}</a>
         {% endfor %}
       </div>
     </div>
   </section>
   {% endif %}
+
+  </div><!-- /.glow-warm-band -->
 
   <!-- ===================== EDUCATION + EXPERIENCE (dark band) ===================== -->
   {% if page.education or page.experience or page.skills or page.coursework %}
@@ -119,14 +116,23 @@ layout: default
       {% endif %}
 
       {% if page.experience %}
-      <h3 class="glow-resume__head">Experience</h3>
+      <h3 class="glow-resume__head" id="experience">Experience</h3>
       <ol class="glow-timeline">
         {% for x in page.experience %}
         <li class="glow-tl reveal" style="--i: {{ forloop.index0 }}">
           <span class="glow-tl__dot" aria-hidden="true"></span>
           {% if x.date %}<p class="glow-tl__date">{{ x.date }}</p>{% endif %}
           <h3 class="glow-tl__title">{{ x.role }}</h3>
-          {% if x.org %}<p class="glow-tl__school">{{ x.org }}</p>{% endif %}
+          {% if x.org %}
+            <p class="glow-tl__school">
+              {% if x.org_url %}<a href="{{ x.org_url }}" target="_blank" rel="noopener">{{ x.org }}</a>{% else %}{{ x.org }}{% endif %}
+            </p>
+          {% endif %}
+          {% if x.keywords %}
+            <div class="glow-tl__keywords">
+              {% for k in x.keywords %}<span class="glow-tl__kw glow-tl__kw--{{ k.type }}">{{ k.term }}</span>{% endfor %}
+            </div>
+          {% endif %}
           {% if x.note %}<p class="glow-tl__note">{{ x.note }}</p>{% endif %}
         </li>
         {% endfor %}
@@ -151,7 +157,7 @@ layout: default
 
       {% if page.coursework %}
       <div class="glow-cw">
-        <h3 class="glow-cw__head">Relevant coursework</h3>
+        <h3 class="glow-cw__head">Coursework</h3>
         <div class="glow-cols">
           {% if page.coursework.graduate %}
           <div class="glow-col">
@@ -189,15 +195,15 @@ layout: default
   </section>
   {% endif %}
 
-  <!-- ===================== CONNECT (coral callout) ===================== -->
+  <!-- ===================== CONNECT (editorial closer, no box) ===================== -->
   <section class="glow-section glow-connect" id="connect">
     <div class="glow-section__wrap glow-connect__wrap">
-      <h2 class="glow-connect__title">Let's build something.</h2>
-      <p class="glow-connect__sub">Reach out about research, projects, or just to say hi.</p>
+      <h2 class="glow-connect__title">Let's connect.</h2>
+      <p class="glow-connect__sub">Reach out about opportunities, projects, or grab coffee :)</p>
       <div class="glow-hero__cta glow-connect__cta">
-        {% if site.author.email %}<a class="glow-btn glow-btn--oncoral" href="mailto:{{ site.author.email }}">Get in touch</a>{% endif %}
-        {% if site.author.linkedin %}<a class="glow-btn glow-btn--coral-ghost" href="https://www.linkedin.com/in/{{ site.author.linkedin }}">LinkedIn</a>{% endif %}
-        {% if site.author.github %}<a class="glow-btn glow-btn--coral-ghost" href="https://github.com/{{ site.author.github }}">GitHub</a>{% endif %}
+        {% if site.author.email %}<a class="glow-btn glow-btn--primary" href="mailto:{{ site.author.email }}">Get in touch</a>{% endif %}
+        {% if site.author.linkedin %}<a class="glow-btn glow-btn--secondary" href="https://www.linkedin.com/in/{{ site.author.linkedin }}">LinkedIn</a>{% endif %}
+        {% if site.author.github %}<a class="glow-btn glow-btn--secondary" href="https://github.com/{{ site.author.github }}">GitHub</a>{% endif %}
       </div>
     </div>
   </section>

@@ -1,7 +1,7 @@
 ---
-title: "NYT AI Stock Sentiment Analysis"
+title: "NYT AI Sentiment Analysis"
 tag: "NLP · Sentiment Analysis"
-excerpt: "Built a full data pipeline &mdash; from the NYT Article Search API through cleaning, sentiment scoring, and time-series aggregation &mdash; to study how New York Times coverage of AI-related stocks has shifted in tone. Collected and deduplicated 170+ articles, then compared sentiment across sections (Business coverage skewed positive, Opinion pieces notably more negative) and checked how sentiment trends lined up with an AI-focused ETF. I built the API data-collection and cleaning pipeline (rate-limited pagination, deduplication, text normalization) that the rest of the team's analysis ran on. Team project."
+excerpt: "End-to-end pipeline &mdash; NYT Article Search API to sentiment scoring to time-series aggregation &mdash; analyzing tone shifts across 170+ articles on AI-related stocks. Business coverage skewed positive, Opinion notably more negative. I built the API collection and cleaning pipeline the team's analysis ran on. Team project.<br/><img src='/images/nyt-ai-sentiment-viz.png' style='width:100%; max-width:1000px; '>"
 collection: portfolio
 links:
   - label: "Report"
