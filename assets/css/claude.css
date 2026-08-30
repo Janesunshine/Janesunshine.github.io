@@ -62,7 +62,7 @@ body {
   background-size: 28px 28px;
   color: var(--c-body);
   font-family: var(--c-font-body);
-  font-size: 17px;
+  font-size: 16px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
@@ -71,7 +71,7 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--c-font-display); color: var(--c-ink)
 @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
 /* Clears the fixed top bar on mobile when a Recent-roles tag jumps here
    (desktop's sidebar isn't fixed-on-top, so no offset needed there). */
-#experience { scroll-margin-top: 100px; }
+#experience { scroll-margin-top: 80px; }
 a { color: var(--c-primary); }
 a:hover { color: var(--c-primary-active); }
 
@@ -129,7 +129,7 @@ a:hover { color: var(--c-primary-active); }
   box-shadow: none;
 }
 .masthead::after { display: none; }
-.masthead__inner-wrap { max-width: 1500px; margin: 0 auto; padding: 22px 24px; position: relative; }
+.masthead__inner-wrap { max-width: 1500px; margin: 0 auto; padding: 18px 24px; position: relative; }
 .masthead__inner-wrap::before { display: none; }
 .masthead__menu-item, .masthead__menu-item--lg { background-color: transparent; }
 
@@ -142,7 +142,7 @@ a:hover { color: var(--c-primary-active); }
 
 .greedy-nav a {
   font-family: var(--c-font-body);
-  font-weight: 500; font-size: 25px; letter-spacing: 0;
+  font-weight: 500; font-size: 17px; letter-spacing: 0;
   color: var(--c-body);
   transition: color 0.15s ease, transform 0.2s ease;
 }
@@ -153,7 +153,7 @@ a:hover { color: var(--c-primary-active); }
    things happening at once so the hover reads as unmistakable, not subtle. */
 .masthead__menu-item:not(.masthead__menu-item--lg):not(.masthead__menu-item--cta) > a {
   position: relative; display: inline-block;
-  padding: 7px 16px 9px 12px; margin: -7px -16px -9px -12px;
+  padding: 6px 14px 7px 10px; margin: -6px -14px -7px -10px;
   border-radius: 9px;
   transition: color 0.2s ease, transform 0.2s ease, background 0.2s ease;
 }
@@ -162,11 +162,11 @@ a:hover { color: var(--c-primary-active); }
   background: rgba(216, 68, 106, 0.12);
 }
 .masthead__menu-item:not(.masthead__menu-item--lg):not(.masthead__menu-item--cta) > a::after {
-  content: ""; position: absolute; left: 12px; right: 100%; bottom: 3px; height: 2px;
+  content: ""; position: absolute; left: 10px; right: 100%; bottom: 3px; height: 2px;
   background: var(--c-primary); transition: right 0.25s ease;
 }
 .masthead__menu-item:not(.masthead__menu-item--lg):not(.masthead__menu-item--cta) > a:hover::after {
-  right: 16px;
+  right: 14px;
 }
 
 /* Wordmark with a small crimson diamond mark — the name itself picks up
@@ -174,10 +174,10 @@ a:hover { color: var(--c-primary-active); }
    hover, alongside the diamond's spin-and-grow. */
 .masthead__menu-item--lg a {
   position: relative; white-space: nowrap; display: inline-block;
-  padding: 8px 18px 8px 28px; margin: -8px 0 -8px -12px;
+  padding: 6px 14px 6px 22px; margin: -6px 0 -6px -10px;
   border-radius: 10px;
   font-family: var(--c-font-display);
-  font-weight: 600; font-size: 37px; letter-spacing: -0.3px;
+  font-weight: 600; font-size: 26px; letter-spacing: -0.3px;
   color: var(--c-ink);
   transition: color 0.2s ease, letter-spacing 0.2s ease, transform 0.2s ease, background 0.2s ease;
 }
@@ -189,8 +189,8 @@ a:hover { color: var(--c-primary-active); }
    vertically centered (independent of the anchor's display mode). High
    specificity so the underline-removal rule above can't hide it. */
 .greedy-nav .visible-links .masthead__menu-item--lg a::before {
-  content: ""; display: block; position: absolute; left: 14px; top: 50%;
-  width: 11px; height: 11px; background: var(--c-primary);
+  content: ""; display: block; position: absolute; left: 10px; top: 50%;
+  width: 9px; height: 9px; background: var(--c-primary);
   border-radius: 2px; transform: translateY(-50%) rotate(45deg);
   transition: transform 0.4s ease;
 }
@@ -200,7 +200,7 @@ a:hover { color: var(--c-primary-active); }
 /* Primary CTA (inline at the end of the centered cluster) */
 a.masthead-cta {
   background: var(--c-primary); color: #fff !important;
-  padding: 15px 28px; border-radius: 8px; font-weight: 500; font-size: 24px;
+  padding: 12px 22px; border-radius: 8px; font-weight: 500; font-size: 16px;
   transition: background 0.15s ease, transform 0.15s ease;
 }
 a.masthead-cta:hover { background: var(--c-primary-active); transform: translateY(-1px); }
@@ -215,7 +215,7 @@ a.masthead-cta:hover { background: var(--c-primary-active); transform: translate
 .greedy-nav .hidden-links a:hover { color: var(--c-ink); background: var(--c-surface-soft); }
 
 /* Inner academic pages clear the fixed nav */
-#main { padding-top: 128px; }
+#main { padding-top: 92px; }
 
 /* ==========================================================================
    Desktop nav — a fixed left sidebar instead of a top bar. Kept to a
@@ -227,29 +227,29 @@ a.masthead-cta:hover { background: var(--c-primary-active); transform: translate
    ========================================================================== */
 @media (min-width: 881px) {
   .masthead {
-    top: 0; left: 0; bottom: 0; width: 252px; height: 100vh;
+    top: 0; left: 0; bottom: 0; width: 220px; height: 100vh;
     border-bottom: none; border-right: 1px solid var(--c-hairline);
     overflow-y: auto;
   }
   .masthead__inner-wrap {
-    max-width: none; height: 100%; margin: 0; padding: 36px 28px;
+    max-width: none; height: 100%; margin: 0; padding: 30px 24px;
   }
   .masthead__menu, .masthead__menu ul { height: 100%; }
   .greedy-nav { display: flex; height: 100%; }
   .greedy-nav .visible-links {
     display: flex; flex-direction: column; align-items: flex-start;
-    gap: 26px; width: 100%; height: 100%;
+    gap: 20px; width: 100%; height: 100%;
   }
   /* A bit larger than the mobile bar's sizing — the sidebar has the
      vertical room to spare. */
-  .greedy-nav a { font-size: 28px; }
-  .masthead__menu-item--lg a { font-size: 41px; }
-  .masthead__menu-item--lg { padding-right: 0; margin-bottom: 6px; }
-  .masthead__menu-item--cta { width: 100%; margin-top: auto; padding-top: 26px; }
+  .greedy-nav a { font-size: 18px; }
+  .masthead__menu-item--lg a { font-size: 28px; }
+  .masthead__menu-item--lg { padding-right: 0; margin-bottom: 4px; }
+  .masthead__menu-item--cta { width: 100%; margin-top: auto; padding-top: 22px; }
   /* Sized to its own text and flush against the same left edge as
      "Portfolio"/"Resume" above it — not stretched full-width, which read
      as centered in the sidebar. */
-  a.masthead-cta { display: inline-block; width: auto; margin-left: -8px; }
+  a.masthead-cta { display: inline-block; width: auto; margin-left: -6px; }
   .greedy-nav button { display: none; }
 
   /* #main covers theme-default pages (individual project pages, 404);
@@ -257,14 +257,14 @@ a.masthead-cta:hover { background: var(--c-primary-active); transform: translate
      `<main class="glow-home">` directly with no #main wrapper. .glow-home
      has an explicit width:100% elsewhere, so margin-left alone would
      overflow the viewport — set the width explicitly alongside it. */
-  #main { padding-top: 0; margin-left: 252px; }
+  #main { padding-top: 0; margin-left: 220px; }
   /* !important: a later, unconditional `.glow-home { width: 100% }` rule
      (layout primitives, below) would otherwise win this specificity tie
      by source order regardless of this media query being narrower/later
      in intent. */
   .glow-home {
-    padding-top: 0 !important; margin-left: 252px !important;
-    width: calc(100% - 252px) !important;
+    padding-top: 0 !important; margin-left: 220px !important;
+    width: calc(100% - 220px) !important;
   }
 }
 
@@ -273,32 +273,32 @@ a.masthead-cta:hover { background: var(--c-primary-active); transform: translate
    ========================================================================== */
 .glow-home, .glow-portfolio { position: relative; width: 100%; max-width: none; color: var(--c-body); font-family: var(--c-font-body); }
 
-.glow-section { padding: clamp(64px, 9vw, 96px) 24px; position: relative; }
+.glow-section { padding: clamp(48px, 6.5vw, 72px) 24px; position: relative; }
 .glow-section__wrap { max-width: 1500px; margin: 0 auto; }
 
 /* Tighten the gap between About and the Experience rows right below it —
    they read as one continuous train of thought, not two separate slabs. */
-#about { padding-bottom: clamp(20px, 2.4vw, 28px); }
+#about { padding-bottom: clamp(16px, 2vw, 22px); }
 #highlights { padding-top: clamp(4px, 0.8vw, 10px); position: relative; }
 #highlights .glow-section__wrap { position: relative; z-index: 1; }
 
 .glow-kicker {
   font-family: var(--c-font-body);
   text-transform: uppercase; letter-spacing: 1.5px;
-  font-size: 16px; font-weight: 500; color: var(--c-primary);
-  margin: 0 0 16px;
+  font-size: 13px; font-weight: 500; color: var(--c-primary);
+  margin: 0 0 14px;
 }
 .glow-h2 {
   font-family: var(--c-font-display);
-  font-size: clamp(36px, 5.4vw, 54px); font-weight: 500;
-  line-height: 1.06; letter-spacing: -1px; color: var(--c-ink);
-  margin: 0 0 40px;
+  font-size: clamp(26px, 3.8vw, 38px); font-weight: 500;
+  line-height: 1.1; letter-spacing: -0.6px; color: var(--c-ink);
+  margin: 0 0 28px;
 }
 .glow-lead {
-  font-size: clamp(19px, 2.2vw, 25px); font-weight: 400; line-height: 1.5;
+  font-size: clamp(16px, 1.6vw, 19px); font-weight: 400; line-height: 1.55;
   color: var(--c-body-strong); max-width: 62ch; margin: 0;
 }
-.glow-prose { margin-top: 16px; color: var(--c-body); line-height: 1.6; max-width: 64ch; }
+.glow-prose { margin-top: 14px; color: var(--c-body); line-height: 1.6; max-width: 64ch; }
 .glow-prose a { color: var(--c-primary); }
 
 /* ==========================================================================
@@ -339,7 +339,7 @@ a.masthead-cta:hover { background: var(--c-primary-active); transform: translate
    "name beside headshot" hero pattern.
    ========================================================================== */
 .glow-hero {
-  padding: clamp(96px, 12vh, 136px) 24px clamp(64px, 9vw, 96px);
+  padding: clamp(64px, 8vh, 92px) 24px clamp(44px, 6vw, 64px);
   position: relative;
 }
 .glow-hero__masthead, .glow-hero__grid { position: relative; z-index: 1; }
@@ -347,13 +347,13 @@ a.masthead-cta:hover { background: var(--c-primary-active); transform: translate
 .glow-hero__masthead { max-width: 1500px; margin: 0 auto; }
 .glow-hero__name {
   font-family: var(--c-font-display);
-  font-size: clamp(52px, 8.6vw, 110px); font-weight: 500;
-  line-height: 0.92; letter-spacing: -3px; color: var(--c-ink); margin: 0 0 clamp(36px, 5vw, 56px);
+  font-size: clamp(36px, 6vw, 68px); font-weight: 500;
+  line-height: 0.98; letter-spacing: -2px; color: var(--c-ink); margin: 0 0 clamp(22px, 3.4vw, 34px);
 }
 
 .glow-hero__grid {
   max-width: 1500px; margin: 0 auto;
-  display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start;
   position: relative;
 }
 /* A printed-page column rule down the middle — the hero reads as a
@@ -363,10 +363,10 @@ a.masthead-cta:hover { background: var(--c-primary-active); transform: translate
   width: 1px; background: var(--c-hairline); transform: translateX(-50%);
 }
 
-.glow-hero__id { display: flex; flex-direction: column; align-items: flex-start; gap: 22px; margin-bottom: 30px; }
+.glow-hero__id { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; margin-bottom: 22px; }
 .glow-hero__avatar {
-  width: 208px; height: 208px; border-radius: 50%; object-fit: cover; object-position: 50% 22%;
-  border: 4px solid var(--c-canvas); outline: 2px solid var(--c-amber); outline-offset: 4px;
+  width: 168px; height: 168px; border-radius: 50%; object-fit: cover; object-position: 50% 22%;
+  border: 3px solid var(--c-canvas); outline: 2px solid var(--c-amber); outline-offset: 3px;
   flex: none;
   box-shadow: 0 14px 34px rgba(25, 22, 17, 0.16);
   transition: transform 0.35s ease, outline-color 0.35s ease;
@@ -376,16 +376,16 @@ a.masthead-cta:hover { background: var(--c-primary-active); transform: translate
    on hover so that's discoverable before the click, not just implied. */
 .glow-hero__avatar-link { position: relative; display: inline-block; border-radius: 50%; }
 .glow-hero__avatar-link::after {
-  content: "in"; position: absolute; right: 6px; bottom: 6px; z-index: 2;
-  width: 36px; height: 36px; border-radius: 50%;
-  background: #0a66c2; color: #fff; font-family: var(--c-font-body); font-weight: 700; font-size: 15px;
+  content: "in"; position: absolute; right: 4px; bottom: 4px; z-index: 2;
+  width: 30px; height: 30px; border-radius: 50%;
+  background: #0a66c2; color: #fff; font-family: var(--c-font-body); font-weight: 700; font-size: 13px;
   display: flex; align-items: center; justify-content: center;
   opacity: 0; transform: scale(0.5); transition: opacity 0.25s ease, transform 0.25s ease;
   box-shadow: 0 4px 12px rgba(10, 102, 194, 0.4);
 }
 .glow-hero__avatar-link:hover::after { opacity: 1; transform: scale(1); }
 .glow-hero__eyebrow {
-  margin: 0; font-size: 17px; font-weight: 500; letter-spacing: 1.5px;
+  margin: 0; font-size: 13px; font-weight: 500; letter-spacing: 1.4px;
   text-transform: uppercase;
 }
 /* Each domain gets its own hue instead of one flat color — three tones
@@ -396,22 +396,22 @@ a.masthead-cta:hover { background: var(--c-primary-active); transform: translate
 .glow-hero__eyebrow-dot { color: var(--c-muted-soft); }
 .glow-hero__tagline {
   margin: 0; max-width: 44ch;
-  font-size: clamp(22px, 2.5vw, 27px); line-height: 1.5; color: var(--c-body-strong);
+  font-size: clamp(16px, 1.8vw, 20px); line-height: 1.5; color: var(--c-body-strong);
 }
-.glow-hero__cta { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 12px; }
+.glow-hero__cta { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 10px; }
 /* Just the hero's own CTA pair (Get in touch / View work) — the Connect
    section's buttons at the bottom of the page keep the base size. */
-.glow-hero__lead .glow-hero__cta .glow-btn { font-size: 19px; padding: 16px 28px; }
-.glow-hero__socials { margin-top: 26px; display: flex; align-items: center; gap: 26px; }
-.glow-hero__socials a { color: var(--c-muted); font-size: 32px; transition: color 0.15s ease, transform 0.15s ease; display: inline-block; }
+.glow-hero__lead .glow-hero__cta .glow-btn { font-size: 15px; padding: 13px 22px; }
+.glow-hero__socials { margin-top: 20px; display: flex; align-items: center; gap: 18px; }
+.glow-hero__socials a { color: var(--c-muted); font-size: 22px; transition: color 0.15s ease, transform 0.15s ease; display: inline-block; }
 .glow-hero__socials a:hover { color: var(--c-primary); transform: translateY(-2px); }
 
 /* About, opposite the portrait — plain running text, no card, no fill.
    Echoes a printed page: a rule to its left (the grid divider above),
    a kicker, a lead line, then body copy. */
 .glow-hero__about { min-width: 0; padding-left: clamp(0px, 4vw, 40px); }
-.glow-hero__about .glow-lead { font-size: clamp(22px, 2.5vw, 28px); }
-.glow-hero__about .glow-prose { font-size: 17px; }
+.glow-hero__about .glow-lead { font-size: clamp(16px, 1.8vw, 20px); }
+.glow-hero__about .glow-prose { font-size: 16px; }
 .glow-hero__about strong { color: var(--c-ink); font-weight: 700; }
 
 /* ==========================================================================
@@ -419,8 +419,8 @@ a.masthead-cta:hover { background: var(--c-primary-active); transform: translate
    ========================================================================== */
 .glow-btn {
   display: inline-flex; align-items: center; gap: 0.5rem;
-  font-family: var(--c-font-body); font-weight: 500; font-size: 15px;
-  padding: 13px 22px; border-radius: 8px; border: 1px solid transparent;
+  font-family: var(--c-font-body); font-weight: 500; font-size: 14px;
+  padding: 12px 20px; border-radius: 8px; border: 1px solid transparent;
   text-decoration: none; cursor: pointer; line-height: 1;
   transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
 }
@@ -438,14 +438,14 @@ a.masthead-cta:hover { background: var(--c-primary-active); transform: translate
    she's worked on; the full résumé with dates, companies, and a keyword
    line per job lives in the Resume timeline below)
    ========================================================================== */
-.glow-tagrow { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; }
+.glow-tagrow { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
 /* Semi-transparent on purpose — solid fill read too heavy for a row of
    quick-glance tags. Also now links down to the Experience timeline
    (below, in the Resume band) where the full detail lives. */
 .glow-tagrow__role {
-  font-family: var(--c-font-display); font-size: 21px; font-weight: 600;
+  font-family: var(--c-font-display); font-size: 15px; font-weight: 600;
   letter-spacing: -0.1px; color: #fff; background: rgba(216, 68, 106, 0.62);
-  padding: 10px 20px; border-radius: 8px; text-decoration: none; cursor: pointer;
+  padding: 8px 16px; border-radius: 8px; text-decoration: none; cursor: pointer;
   display: inline-block; transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 .glow-tagrow__role:hover {
@@ -468,38 +468,38 @@ a.masthead-cta:hover { background: var(--c-primary-active); transform: translate
 .glow-kicker--ondark { color: var(--c-amber); }
 .glow-h2--ondark { color: var(--c-on-dark); }
 .glow-resume__head {
-  font-family: var(--c-font-display); font-size: clamp(29px, 3.2vw, 37px); font-weight: 600;
-  letter-spacing: -0.2px; color: var(--c-on-dark); margin: 2.6rem 0 1.4rem;
+  font-family: var(--c-font-display); font-size: clamp(21px, 2.4vw, 27px); font-weight: 600;
+  letter-spacing: -0.2px; color: var(--c-on-dark); margin: 2rem 0 1rem;
 }
 .glow-resume__head:first-of-type { margin-top: 0; }
 
-.glow-timeline { list-style: none; margin: 0 0 3rem; padding: 0; position: relative; }
+.glow-timeline { list-style: none; margin: 0 0 2.2rem; padding: 0; position: relative; }
 .glow-timeline::before {
-  content: ""; position: absolute; left: 7px; top: 10px; bottom: 10px; width: 2px;
+  content: ""; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 2px;
   background: var(--c-amber); opacity: 0.55;
 }
-.glow-tl { position: relative; padding: 0 0 2.4rem 2.4rem; }
+.glow-tl { position: relative; padding: 0 0 1.8rem 2rem; }
 .glow-tl:last-child { padding-bottom: 0; }
 .glow-tl__dot {
-  position: absolute; left: 0; top: 4px; width: 16px; height: 16px;
+  position: absolute; left: 0; top: 4px; width: 13px; height: 13px;
   border-radius: 50%; background: var(--c-dark); border: 2px solid var(--c-amber);
 }
 .glow-tl__date {
-  margin: 0 0 6px; font-size: 16px; font-weight: 500; letter-spacing: 1.5px;
+  margin: 0 0 5px; font-size: 12px; font-weight: 500; letter-spacing: 1.3px;
   text-transform: uppercase; color: var(--c-amber);
 }
 .glow-tl__title {
-  font-family: var(--c-font-display); font-size: clamp(32px, 3.6vw, 44px);
-  font-weight: 500; letter-spacing: -0.3px; line-height: 1.25; color: var(--c-on-dark); margin: 0 0 6px;
+  font-family: var(--c-font-display); font-size: clamp(21px, 2.4vw, 28px);
+  font-weight: 500; letter-spacing: -0.2px; line-height: 1.25; color: var(--c-on-dark); margin: 0 0 5px;
 }
-.glow-tl__school { margin: 0; color: var(--c-on-dark-soft); font-size: 21px; }
-.glow-tl__keywords { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 8px; }
+.glow-tl__school { margin: 0; color: var(--c-on-dark-soft); font-size: 15px; }
+.glow-tl__keywords { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 7px; }
 /* Bright, and split into two readable hues by kind — a skill/domain term
    reads gold, a tool/language name reads lavender — so the row isn't one
    flat mass of near-invisible chips against the dark surface. */
 .glow-tl__kw {
-  font-family: var(--c-font-mono); font-size: 14px; font-weight: 500;
-  padding: 6px 14px; border-radius: 8px; border: 1px solid;
+  font-family: var(--c-font-mono); font-size: 12px; font-weight: 500;
+  padding: 5px 12px; border-radius: 8px; border: 1px solid;
 }
 .glow-tl__kw--skill {
   color: #f9d879; background: rgba(242, 183, 5, 0.18); border-color: rgba(242, 183, 5, 0.5);
@@ -507,22 +507,22 @@ a.masthead-cta:hover { background: var(--c-primary-active); transform: translate
 .glow-tl__kw--tool {
   color: #8ec3e8; background: rgba(90, 150, 200, 0.18); border-color: rgba(90, 150, 200, 0.5);
 }
-.glow-tl__note { margin: 10px 0 0; color: var(--c-on-dark-soft); font-size: 18px; }
+.glow-tl__note { margin: 8px 0 0; color: var(--c-on-dark-soft); font-size: 14px; }
 
-.glow-cw { margin-top: 8px; }
+.glow-cw { margin-top: 6px; }
 .glow-cw__head {
-  font-family: var(--c-font-body); font-size: 16px; font-weight: 500; text-transform: uppercase;
-  letter-spacing: 1.5px; color: var(--c-on-dark-soft); margin: 0 0 20px;
+  font-family: var(--c-font-body); font-size: 12px; font-weight: 500; text-transform: uppercase;
+  letter-spacing: 1.4px; color: var(--c-on-dark-soft); margin: 0 0 16px;
 }
-.glow-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-.glow-col { background: var(--c-dark-elev); border-radius: 12px; padding: 24px; }
+.glow-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+.glow-col { background: var(--c-dark-elev); border-radius: 12px; padding: 20px; }
 .glow-col__title {
-  font-family: var(--c-font-body); font-size: 23px; text-transform: uppercase;
-  letter-spacing: 1.5px; color: var(--c-on-dark-soft); margin: 0 0 20px;
+  font-family: var(--c-font-body); font-size: 14px; text-transform: uppercase;
+  letter-spacing: 1.4px; color: var(--c-on-dark-soft); margin: 0 0 16px;
 }
-.glow-chiplist { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.glow-chiplist { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 7px; }
 .glow-chip {
-  font-size: 21px; font-weight: 500; padding: 10px 17px; border-radius: 8px;
+  font-size: 13px; font-weight: 500; padding: 7px 13px; border-radius: 8px;
   background: var(--c-dark-soft); border: 1px solid rgba(255, 255, 255, 0.08); color: var(--c-on-dark);
   transition: background 0.2s ease, transform 0.2s ease, color 0.2s ease;
 }
@@ -533,7 +533,7 @@ a.masthead-cta:hover { background: var(--c-primary-active); transform: translate
    ========================================================================== */
 .glow-badges { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
 .glow-badge {
-  font-size: 15px; font-weight: 500; padding: 9px 17px; border-radius: 8px;
+  font-size: 13px; font-weight: 500; padding: 8px 15px; border-radius: 8px;
   background: var(--c-surface-card); border: 1px solid var(--c-hairline); color: var(--c-ink);
 }
 
@@ -543,19 +543,19 @@ a.masthead-cta:hover { background: var(--c-primary-active); transform: translate
 .glow-connect { text-align: center; border-top: 1px solid var(--c-hairline); }
 .glow-connect__wrap { max-width: 640px; margin: 0 auto; text-align: center; padding: clamp(8px, 2vw, 16px) 0 0; }
 .glow-connect__title {
-  font-family: var(--c-font-display); font-size: clamp(35px, 5vw, 53px);
-  font-weight: 500; letter-spacing: -0.5px; color: var(--c-ink); margin: 0 0 10px;
+  font-family: var(--c-font-display); font-size: clamp(24px, 3.4vw, 34px);
+  font-weight: 500; letter-spacing: -0.4px; color: var(--c-ink); margin: 0 0 8px;
 }
-.glow-connect__sub { color: var(--c-muted); font-size: 19px; margin: 0 0 28px; }
+.glow-connect__sub { color: var(--c-muted); font-size: 15px; margin: 0 0 22px; }
 .glow-connect__cta { margin-top: 0; justify-content: center; }
 
 /* ==========================================================================
    Portfolio — an ordered editorial index, ranked by relevance
    (no "featured" card — position in the list carries that signal instead)
    ========================================================================== */
-.glow-portfolio { padding-top: 64px; }
+.glow-portfolio { padding-top: 48px; }
 .glow-phead {
-  text-align: center; padding: clamp(80px, 12vw, 120px) 24px 24px;
+  text-align: center; padding: clamp(56px, 9vw, 88px) 24px 20px;
   position: relative; overflow: hidden;
   background:
     radial-gradient(ellipse 80% 70% at 50% -10%, rgba(216, 68, 106, 0.16) 0%, transparent 62%),
@@ -572,23 +572,23 @@ a.masthead-cta:hover { background: var(--c-primary-active); transform: translate
 }
 .glow-phead__title, .glow-phead__sub { position: relative; z-index: 1; }
 .glow-phead__title {
-  font-family: var(--c-font-display); font-size: clamp(50px, 8.4vw, 80px);
-  font-weight: 500; letter-spacing: -1.5px; line-height: 1.05; color: var(--c-ink); margin: 0;
+  font-family: var(--c-font-display); font-size: clamp(32px, 5.4vw, 52px);
+  font-weight: 500; letter-spacing: -1px; line-height: 1.08; color: var(--c-ink); margin: 0;
 }
-.glow-phead__sub { margin: 16px auto 0; max-width: 600px; color: var(--c-muted); font-size: 19px; }
+.glow-phead__sub { margin: 14px auto 0; max-width: 600px; color: var(--c-muted); font-size: 15px; }
 
-.pf-section { padding-top: 8px; }
+.pf-section { padding-top: 6px; }
 .pf-list {
   list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--c-hairline);
-  display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 64px;
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 48px;
 }
 .pf-row {
-  display: flex; flex-direction: column; gap: 18px;
-  padding: 44px 0; border-bottom: 1px solid var(--c-hairline);
+  display: flex; flex-direction: column; gap: 14px;
+  padding: 32px 0; border-bottom: 1px solid var(--c-hairline);
 }
-.pf-row__meta { display: flex; align-items: center; gap: 16px; }
+.pf-row__meta { display: flex; align-items: center; gap: 14px; }
 .pf-row__num {
-  font-family: var(--c-font-display); font-size: 26px; font-weight: 700;
+  font-family: var(--c-font-display); font-size: 17px; font-weight: 700;
   color: var(--c-primary);
 }
 .pf-row__media {
@@ -609,11 +609,11 @@ a.masthead-cta:hover { background: var(--c-primary-active); transform: translate
   opacity: 0; transition: opacity 0.3s ease;
 }
 .pf-row__media::after {
-  content: "↗"; position: absolute; right: 18px; bottom: 18px; z-index: 2;
-  width: 42px; height: 42px; border-radius: 50%;
+  content: "↗"; position: absolute; right: 16px; bottom: 16px; z-index: 2;
+  width: 34px; height: 34px; border-radius: 50%;
   background: var(--c-amber); color: var(--c-dark);
   display: flex; align-items: center; justify-content: center;
-  font-size: 19px; font-weight: 700;
+  font-size: 15px; font-weight: 700;
   opacity: 0; transform: translateY(10px) scale(0.7);
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
@@ -621,28 +621,28 @@ a.masthead-cta:hover { background: var(--c-primary-active); transform: translate
 .pf-row:hover .pf-row__media::after { opacity: 1; transform: none; }
 .pf-row__body { min-width: 0; }
 .pf-row__title {
-  font-family: var(--c-font-display); font-size: clamp(26px, 2.2vw, 33px); font-weight: 600;
-  letter-spacing: -0.3px; line-height: 1.2; color: var(--c-ink); margin: 0 0 10px;
+  font-family: var(--c-font-display); font-size: clamp(19px, 1.9vw, 24px); font-weight: 600;
+  letter-spacing: -0.2px; line-height: 1.2; color: var(--c-ink); margin: 0 0 8px;
 }
-.pf-row__desc { color: var(--c-body); font-size: 17px; line-height: 1.6; }
+.pf-row__desc { color: var(--c-body); font-size: 14px; line-height: 1.6; }
 .pf-row__desc p { margin: 0; }
 .pf-row__desc img { display: none; }
 
 /* Tag pills */
 .pf-tag {
-  font-size: 15px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
+  font-size: 12px; font-weight: 600; letter-spacing: 1.3px; text-transform: uppercase;
   color: #fff; background: var(--c-primary); border: 1px solid transparent;
-  padding: 6px 15px; border-radius: 8px;
+  padding: 5px 12px; border-radius: 8px;
 }
 
 .pf-row__link {
   display: inline-flex; align-items: center; gap: 0.4rem;
-  font-family: var(--c-font-body); font-weight: 500; font-size: 15px; color: var(--c-primary); text-decoration: none;
+  font-family: var(--c-font-body); font-weight: 500; font-size: 13px; color: var(--c-primary); text-decoration: none;
 }
 .pf-row__link span { transition: transform 0.2s ease; }
 .pf-row__link:hover { color: var(--c-primary-active); }
 .pf-row__link:hover span { transform: translateX(4px); }
-.pf-actions { margin-top: 6px; display: flex; flex-wrap: wrap; gap: 18px; }
+.pf-actions { margin-top: 4px; display: flex; flex-wrap: wrap; gap: 14px; }
 
 /* ==========================================================================
    Footer + generic content pages
@@ -651,15 +651,15 @@ a.masthead-cta:hover { background: var(--c-primary-active); transform: translate
    which leaves a tall blank gap above the footer once a page is taller
    than the viewport — every page here always is, so just let it flow. */
 .page__footer {
-  background: var(--c-dark); color: var(--c-on-dark-soft); font-family: var(--c-font-body); font-size: 16px;
+  background: var(--c-dark); color: var(--c-on-dark-soft); font-family: var(--c-font-body); font-size: 14px;
   position: static; margin-top: 0;
 }
 .page__footer a { color: var(--c-on-dark); }
 .page__footer a:hover { color: var(--c-primary); }
-.page__footer-copyright { font-size: 15px !important; }
-.page__footer-follow li { font-size: 15px !important; }
+.page__footer-copyright { font-size: 13px !important; }
+.page__footer-follow li { font-size: 13px !important; }
 .page__footer .fas, .page__footer .fab, .page__footer .far, .page__footer .fal {
-  font-size: 19px; vertical-align: -2px;
+  font-size: 16px; vertical-align: -2px;
 }
 
 .page__content { font-family: var(--c-font-body); color: var(--c-body); }
@@ -684,6 +684,5 @@ a.masthead-cta:hover { background: var(--c-primary-active); transform: translate
   .pf-row__media { aspect-ratio: 16 / 9; }
 }
 @media (max-width: 600px) {
-  .glow-hero__avatar { width: 148px; height: 148px; }
+  .glow-hero__avatar { width: 128px; height: 128px; }
 }
-
