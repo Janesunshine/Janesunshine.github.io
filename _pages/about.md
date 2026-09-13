@@ -13,8 +13,8 @@ intro: >-
   Hi I'm Jane 👋<br/><br/>
   I'm at <strong><a href="https://www.gatech.edu" target="_blank"
   rel="noopener">Georgia Tech</a></strong> pursuing dual master's degrees in Quantitative &
-  Computational Finance and Computational Science & Engineering, graduating
-  <strong>this December</strong>. I also hold a B.S. in Information Systems from Georgia Tech,
+  Computational Finance and Computational Science & Engineering, graduating in
+  <strong>May 2027</strong>. I also hold a B.S. in Information Systems from Georgia Tech,
   with <strong>highest honors</strong>. I'm looking for a full-time quant finance, machine
   learning, or risk management role starting in <strong>2027</strong>.
 highlights:
@@ -23,10 +23,10 @@ highlights:
   - "Healthcare Consulting Analyst"
   - "Quant Risk Analyst"
 education:
-  - date: "Aug 2025 – Dec 2026"
+  - date: "Aug 2025 – May 2027"
     degree: "M.S. in Quantitative & Computational Finance"
     school: "Georgia Institute of Technology"
-  - date: "Aug 2025 – Dec 2026"
+  - date: "Aug 2025 – May 2027"
     degree: "M.S. in Computational Science & Engineering"
     school: "Georgia Institute of Technology"
   - date: "Aug 2020 – Dec 2024"
